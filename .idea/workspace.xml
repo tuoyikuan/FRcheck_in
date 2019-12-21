@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d8873a8a-7bdb-4cca-980c-8cfe68337295" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/static" />
+  </component>
+  <component name="ProjectId" id="1V29HSQ2Ncb3ys956elyNon231N" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../DjangoBlog" />
+    <property name="run.code.analysis.last.selected.profile" value="aDefault" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Python" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Nathaniel\Desktop\demo\db" />
+      <recent name="C:\Users\Nathaniel\Desktop\demo\register" />
+      <recent name="C:\Users\Nathaniel\Desktop\demo\demo" />
+      <recent name="C:\Users\Nathaniel\Desktop\demo\dbapp" />
+    </key>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d8873a8a-7bdb-4cca-980c-8cfe68337295" name="Default Changelist" comment="" />
+      <created>1576440234949</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1576440234949</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="479" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576924648288">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="479" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1576924648288" />
+    <state x="779" y="426" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1576918102268">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="779" y="426" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.2048.1112@0.0.2048.1112" timestamp="1576918102268" />
+    <state x="805" y="311" key="FileChooserDialogImpl" timestamp="1576450377104">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="805" y="311" key="FileChooserDialogImpl/0.0.2048.1112@0.0.2048.1112" timestamp="1576450377104" />
+    <state x="526" y="198" key="SettingsEditor" timestamp="1576917968566">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="526" y="198" key="SettingsEditor/0.0.2048.1112@0.0.2048.1112" timestamp="1576917968566" />
+    <state x="705" y="380" key="com.intellij.ide.util.TipDialog" timestamp="1576927298160">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="705" y="380" key="com.intellij.ide.util.TipDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1576927298160" />
+    <state x="681" y="163" width="685" height="786" key="find.popup" timestamp="1576932908347">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="681" y="163" width="685" height="786" key="find.popup/0.0.2048.1112@0.0.2048.1112" timestamp="1576932908347" />
+    <state x="687" y="243" width="672" height="678" key="search.everywhere.popup" timestamp="1576920290692">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="687" y="243" width="672" height="678" key="search.everywhere.popup/0.0.2048.1112@0.0.2048.1112" timestamp="1576920290692" />
+  </component>
+</project>

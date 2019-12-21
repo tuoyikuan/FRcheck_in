@@ -1,0 +1,62 @@
+{% extends "common.html" %}
+{% block 'kk' %}
+<div class="row">
+	<div class="col-xl-10">
+		<!-- ============================================================== -->
+		<!-- pageheader  -->
+		<!-- ============================================================== -->
+		<div class="row">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+				<div class="page-header" id="top">
+					<h2 class="pageheader-title">通知详情 </h2>
+					<p class="pageheader-text">通知的详细内容</p>
+					<div class="page-breadcrumb">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+								<li class="breadcrumb-item"><a href="#" class="breadcrumb-link">UI Elements</a></li>
+								<li class="breadcrumb-item active" aria-current="page">Cards</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- ============================================================== -->
+		<!-- end pageheader  -->
+		<!-- ============================================================== -->
+		<!-- ============================================================== -->
+		<!-- simple cards  -->
+		<!-- ============================================================== -->
+		<div class="row">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+				<div class="card">
+					<div class="card-body">
+						<h3 class="card-title">{{title}}</h3>
+						<p class="card-text">{{content}}</p>
+						<div class="row">
+							<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9"></div>
+							<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+								{% if isAuthor %}
+								<a href="/notification/delete_post/{{noti}}/" class="btn btn-primary">Delete This Notification</a>
+								{% else %}
+								<a href="#" class="btn btn-primary">Go somewhere</a>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- ============================================================== -->
+<!-- end main wrapper -->
+<!-- ============================================================== -->
+<!-- Optional JavaScript -->
+{% load static %}
+<script src="{% static 'assets/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
+<script src="{% static 'assets/vendor/slimscroll/jquery.slimscroll.js' %}"></script>
+<script src='../assets/libs/js/main-js.js'></script>
+{% endblock %}
