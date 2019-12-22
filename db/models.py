@@ -2,8 +2,8 @@ from django.db import models
 
 
 class User(models.Model):
-    name = models.CharField(max_length=50)
-    pwd = models.CharField(max_length=500)
+    username = models.CharField(max_length=50)
+    password = models.CharField(max_length=500)
     info = models.TextField()
 
 
@@ -26,6 +26,7 @@ class Student(models.Model):
 
 class TA(models.Model):
     id = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
+    ta_id = models.CharField(max_length=50)
     authority = models.BinaryField()
 
 
