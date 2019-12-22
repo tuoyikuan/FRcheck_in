@@ -42,7 +42,8 @@
 example
 
 ```python
-from db.models import *
+from db.models import *   """告诉函数有哪些类"""
+from django.db import models  """import数据库"""
 
 def func1():
     user=User(name='foo', pwd='foopwd', info='')
@@ -52,6 +53,7 @@ def func1():
 	cl=Class(class_name='fooclass', info='')
     cl.save()
     cl.students.add(student)
+    student_lists = models.Student.objects.filter(id>5).all()
 ```
 
 更多示例查看`notification`模块及官方文档。
