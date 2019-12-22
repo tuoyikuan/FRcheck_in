@@ -36,24 +36,39 @@
     <!-- ============================================================== -->
     <!-- signup form  -->
     <!-- ============================================================== -->
-    <form class="splash-container">
+    <form class="splash-container" action="/accounts/register_post/" method="post">
+        {% csrf_token %}
         <div class="card">
             <div class="card-header">
                 <h3 class="mb-1">Registrations Form</h3>
                 <p>Please enter your user information.</p>
             </div>
             <div class="card-body">
+                {% if errors %}
+                    <div class="form-group" style="color: red">
+                        <p> {{ errors }} </p>
+                    </div>
+                {% endif %}
                 <div class="form-group">
-                    <input class="form-control form-control-lg" type="text" name="nick" required="" placeholder="Username" autocomplete="off">
+                    <input class="form-control form-control-lg" value="{{ username }}" type="text" name="username" required="" placeholder="Username" autocomplete="off">
                 </div>
                 <div class="form-group">
-                    <input class="form-control form-control-lg" type="email" name="email" required="" placeholder="E-mail" autocomplete="off">
+                    <input class="form-control form-control-lg" value="{{ email }}" type="email" name="email" required="" placeholder="E-mail" autocomplete="off">
                 </div>
                 <div class="form-group">
-                    <input class="form-control form-control-lg" id="pass1" type="password" required="" placeholder="Password">
+                    <input class="form-control form-control-lg" type="password" required="" name="password1" placeholder="Password">
                 </div>
                 <div class="form-group">
-                    <input class="form-control form-control-lg" required="" placeholder="Confirm">
+                    <input class="form-control form-control-lg" type="password" required="" name="password2" placeholder="Confirm">
+                </div>
+                <div class="form-group">
+                    <input class="form-control form-control-lg" value="{{ name }}" required="" name="name" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <input class="form-control form-control-lg" value="{{ number }}" required="" name="number" placeholder="Student/Teacher ID">
+                </div>
+                <div class="form-group">
+                    <input class="form-control form-control-lg" value="{{ dept }}" required="" name="dept" placeholder="Department">
                 </div>
                 <div class="form-group pt-2">
                     <button class="btn btn-block btn-primary" type="submit">Register My Account</button>
@@ -66,5 +81,5 @@
     </form>
 </body>
 
- 
+
 </html>
