@@ -7,7 +7,7 @@
 <div class="row">
 	<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 		<div class="page-header">
-			<h2 class="pageheader-title">你好，张睿嘉</h2>
+			<h2 class="pageheader-title">你好,{{ username }}</h2>
 			<p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
 			<div class="page-breadcrumb">
 				<nav aria-label="breadcrumb">
@@ -20,8 +20,41 @@
 		</div>
 	</div>
 </div>
+    <form  action="addClass">
+        <div class="row" style="text-align: center">
+            <div  class="col-xl-10 col-lg-11 col-md-11 col-sm-3 col-3">
+            <div class="input-group input-group-round">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-search"></i>
+                    </span>
+                </div>
+                <input type="text" class="form-control filter-list-input" placeholder="课程代码" aria-label="">
+            </div>
+            </div>
+            <div style="text-align: left; margin: auto">
+            <div class="col-xl-1 col-lg-1 col-md-2 col-sm-1 col-1" style="margin: auto">
+                <input type="submit" class="btn btn-rounded btn-primary" value="加入课程">
+            </div>
+                </div>
+        </div>
+    </form>
+
+   <br>
+     <br>
+    {% ifequal 0 len %}
+    <div style="text-align: center">
+        <div class="text-body">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <h4 class="card-header">
+                    您好，您还未加入任何课程！
+                </h4>
+            </div>
+        </div>
+    </div>
+    {% endifequal %}
 {% for tmp in tmplist %}
-<a href = "/studentClass/class/?class_id={{tmp.class_id}}">
+<a href = "/studentClass/section/?class_id={{tmp.class_id}}">
 <div class="row" align="center" >
 	<!-- ============================================================== -->
 	<!-- simple line chart  -->
