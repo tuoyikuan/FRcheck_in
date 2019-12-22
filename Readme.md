@@ -60,3 +60,10 @@ def func1():
 
 注意：不要给`create_date`赋值，所有值不能留空，遇到不需要的值应填入空字符串
 
+
+### 4. 关于cookie
+
+设置的登录界面会加入两个cookie：
+键值对 与 加密盐分别如下
+islogin：0/1  login   （0代表未登录，1代表登录了）
+user：username usr    （username即代表）
