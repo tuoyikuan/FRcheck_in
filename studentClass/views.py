@@ -6,12 +6,12 @@ from django.db.models import Q
 
 
 # Create your views here.
-
+import pdb
 @login_required
 def allClass(request):
     usr = request.user.username
     s = Student.objects.get(id__username=usr)
-    class_list = StudentMembership.objects.filter(student=s[0])
+    class_list = StudentMembership.objects.filter(student=s)
     length = len(class_list)
     tmplist = []
     for cl in class_list:
@@ -24,10 +24,12 @@ def allClass(request):
 
 
 def addClass(request):
+    pdb.set_trace()
     if request.method == 'POST':
         class_id = request.POST.get("classId")
         usr = request.user.username
         s = Student.objects.get(id__username=usr)
         cl = Class.objects.get(id=class_id)
         cl.students.add(s)
+        cl.save()
     return redirect("/studentClass")
