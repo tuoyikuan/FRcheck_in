@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d8873a8a-7bdb-4cca-980c-8cfe68337295" name="Default Changelist" comment="" />
+    <list default="true" id="d8873a8a-7bdb-4cca-980c-8cfe68337295" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrations/0002_auto_20191221_2326.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrations/0003_auto_20191221_2335.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newdb.txt" beforeDir="false" afterPath="$PROJECT_DIR$/newdb.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/notification/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/studentClass/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/studentClass/urls.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,7 +27,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/static" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1V29HSQ2Ncb3ys956elyNon231N" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -61,17 +73,52 @@
       <option name="presentableId" value="Default" />
       <updated>1576440234949</updated>
     </task>
+    <task id="LOCAL-00001" summary="add db operation example">
+      <created>1576997589667</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1576997589667</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add db operation example" />
+    <option name="LAST_COMMIT_MESSAGE" value="add db operation example" />
   </component>
   <component name="WindowStateProjectService">
     <state x="479" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576924648288">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="479" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1576924648288" />
+    <state x="760" y="359" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1577001378423">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="760" y="359" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2048.1112@0.0.2048.1112" timestamp="1577001378423" />
     <state x="779" y="426" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1576918102268">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="779" y="426" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.2048.1112@0.0.2048.1112" timestamp="1576918102268" />
+    <state x="665" y="150" key="CommitChangelistDialog2" timestamp="1576997588165">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="665" y="150" key="CommitChangelistDialog2/0.0.2048.1112@0.0.2048.1112" timestamp="1576997588165" />
+    <state x="198" y="94" key="DiffContextDialog" timestamp="1576997346834">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="198" y="94" key="DiffContextDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1576997346834" />
     <state x="805" y="311" key="FileChooserDialogImpl" timestamp="1576450377104">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
@@ -80,6 +127,10 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="526" y="198" key="SettingsEditor/0.0.2048.1112@0.0.2048.1112" timestamp="1576917968566" />
+    <state x="617" y="289" key="Vcs.Push.Dialog.v2" timestamp="1576997618266">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="617" y="289" key="Vcs.Push.Dialog.v2/0.0.2048.1112@0.0.2048.1112" timestamp="1576997618266" />
     <state x="705" y="380" key="com.intellij.ide.util.TipDialog" timestamp="1576927298160">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
@@ -88,6 +139,10 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="681" y="163" width="685" height="786" key="find.popup/0.0.2048.1112@0.0.2048.1112" timestamp="1576932908347" />
+    <state x="732" y="347" key="git4idea.merge.GitPullDialog" timestamp="1576997298624">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="732" y="347" key="git4idea.merge.GitPullDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1576997298624" />
     <state x="687" y="243" width="672" height="678" key="search.everywhere.popup" timestamp="1576920290692">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
