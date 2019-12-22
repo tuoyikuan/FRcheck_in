@@ -1,8 +1,8 @@
 from db.models import *
 
-u1=User.objects.create(name='user1', pwd='pwd1', info='')
-u2=User.objects.create(name='user2', pwd='pwd2', info='')
-u3=User.objects.create(name='user3', pwd='pwd3', info='')
+u1=User.objects.create(username='user1', password='pwd1', info='')
+u2=User.objects.create(username='user2', password='pwd2', info='')
+u3=User.objects.create(username='user3', password='pwd3', info='')
 
 s1=Student.objects.create(id=u1, student_id='3170101111', dept='CS')
 s2=Student.objects.create(id=u2, student_id='3170102222', dept='CS')

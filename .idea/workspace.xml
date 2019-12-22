@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d8873a8a-7bdb-4cca-980c-8cfe68337295" name="Default Changelist" comment="register page added">
+    <list default="true" id="d8873a8a-7bdb-4cca-980c-8cfe68337295" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/demo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/demo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.7z" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrations/0002_auto_20191221_2326.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrations/0003_auto_20191221_2335.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newdb.txt" beforeDir="false" afterPath="$PROJECT_DIR$/newdb.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/notification/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/studentClass/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/studentClass/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,10 +41,11 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../DjangoBlog" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -64,7 +77,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1576440234949</updated>
-      <workItem from="1577008544910" duration="56000" />
+      <workItem from="1577008544910" duration="3388000" />
     </task>
     <task id="LOCAL-00001" summary="add db operation example">
       <created>1576997589667</created>
@@ -73,7 +86,21 @@
       <option name="project" value="LOCAL" />
       <updated>1576997589667</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="merged">
+      <created>1577008820944</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1577008820944</updated>
+    </task>
+    <task id="LOCAL-00003" summary="merged">
+      <created>1577008838053</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1577008838053</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -100,7 +127,8 @@
       <path value="$PROJECT_DIR$/templates" />
     </ignored-roots>
     <MESSAGE value="add db operation example" />
-    <option name="LAST_COMMIT_MESSAGE" value="add db operation example" />
+    <MESSAGE value="merged" />
+    <option name="LAST_COMMIT_MESSAGE" value="merged" />
   </component>
   <component name="WindowStateProjectService">
     <state x="479" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576924648288">
@@ -115,10 +143,10 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="779" y="426" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.2048.1112@0.0.2048.1112" timestamp="1576918102268" />
-    <state x="665" y="150" key="CommitChangelistDialog2" timestamp="1577008819692">
+    <state x="665" y="150" key="CommitChangelistDialog2" timestamp="1577012028567">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="665" y="150" key="CommitChangelistDialog2/0.0.2048.1112@0.0.2048.1112" timestamp="1577008819692" />
+    <state x="665" y="150" key="CommitChangelistDialog2/0.0.2048.1112@0.0.2048.1112" timestamp="1577012028567" />
     <state x="198" y="94" key="DiffContextDialog" timestamp="1576997346834">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
@@ -135,14 +163,14 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="733" y="272" key="MultipleFileMergeDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1577008789278" />
-    <state x="526" y="198" key="SettingsEditor" timestamp="1577008600426">
+    <state x="526" y="198" key="SettingsEditor" timestamp="1577009076767">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="526" y="198" key="SettingsEditor/0.0.2048.1112@0.0.2048.1112" timestamp="1577008600426" />
-    <state x="617" y="289" key="Vcs.Push.Dialog.v2" timestamp="1576997618266">
+    <state x="526" y="198" key="SettingsEditor/0.0.2048.1112@0.0.2048.1112" timestamp="1577009076767" />
+    <state x="617" y="289" key="Vcs.Push.Dialog.v2" timestamp="1577008907757">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="617" y="289" key="Vcs.Push.Dialog.v2/0.0.2048.1112@0.0.2048.1112" timestamp="1576997618266" />
+    <state x="617" y="289" key="Vcs.Push.Dialog.v2/0.0.2048.1112@0.0.2048.1112" timestamp="1577008907757" />
     <state x="705" y="380" key="com.intellij.ide.util.TipDialog" timestamp="1576927298160">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
@@ -159,9 +187,9 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="732" y="347" key="git4idea.merge.GitPullDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1576997298624" />
-    <state x="687" y="243" width="672" height="678" key="search.everywhere.popup" timestamp="1576920290692">
+    <state x="687" y="243" width="672" height="678" key="search.everywhere.popup" timestamp="1577009087432">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="687" y="243" width="672" height="678" key="search.everywhere.popup/0.0.2048.1112@0.0.2048.1112" timestamp="1576920290692" />
+    <state x="687" y="243" width="672" height="678" key="search.everywhere.popup/0.0.2048.1112@0.0.2048.1112" timestamp="1577009087432" />
   </component>
 </project>

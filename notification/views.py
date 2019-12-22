@@ -16,7 +16,7 @@ def show_noti_list(request, class_id):
             'title': e.title,
             'content': e.content,
             'create_date': e.create_date,
-            'author': e.author.name,
+            'author': e.author.username,
         })
 
     return render(request, 'notification/notification.html', {

@@ -1,9 +1,8 @@
 from django.db import models
+import django.contrib.auth.models as djmod
 
 
-class User(models.Model):
-    username = models.CharField(max_length=50)
-    password = models.CharField(max_length=500)
+class User(djmod.User):
     info = models.TextField()
 
 
