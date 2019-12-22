@@ -19,6 +19,7 @@ from . import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('notification/', include('notification.urls')),
     path('studentMain/', include("studentMain.urls")),
     path('studentClass/', include("studentClass.urls")),
