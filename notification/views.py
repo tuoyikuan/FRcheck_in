@@ -38,14 +38,16 @@ def delete_post(request, noti_id):
     temp = Activity.objects.get(id=noti_id)
     class_id = temp.class_id
     temp.delete()
-    return redirect('/notification/%d' % class_id.id)
+    return redirect('/notification/?class_id=%d' % class_id.id)
 
 
-def create_form(request, class_id):
+def create_form(request):
+    class_id = request.GET.get('class_id')
     return render(request, 'notification/new_notification.html', {'class_id': class_id})
 
 
-def create_post(request, class_id):
+def create_post(request):
+    class_id = request.GET.get('class_id')
     if request.method == 'POST':
         title = request.POST.get('noti-title')
         content = request.POST.get('noti-content')

@@ -26,7 +26,8 @@ class Student(models.Model):
 class TA(models.Model):
     id = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
     ta_id = models.CharField(max_length=50)
-    authority = models.BinaryField()
+    dept = models.CharField(max_length=50)
+    authority = models.CharField(max_length=100)
 
 
 class Admin(models.Model):
