@@ -4,9 +4,12 @@ from db.models import *
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 
-
 # Create your views here.
 import pdb
+
+signal = 0
+
+
 @login_required
 def allClass(request):
     usr = request.user.username
@@ -18,18 +21,34 @@ def allClass(request):
         tmplist.append({
             'class_id': cl.class_id.id,
             'class_name': cl.class_id.class_name,
-            'class_info': cl.class_id.info[:100]
+            'class_info': (cl.class_id.info if len(cl.class_id.info) else "暂无简介")[:100]
         })
-    return render(request, "student/studentClass.html", {'class_list': tmplist, 'username': usr, 'len': length})
+    global signal
+    temp = signal
+    signal = 0
+    return render(request, "student/studentClass.html", {
+        'class_list': tmplist,
+        'username': usr,
+        'len': length,
+        'signal': temp,
+    })
 
 
 def addClass(request):
-    pdb.set_trace()
+    global signal
     if request.method == 'POST':
-        class_id = request.POST.get("classId")
+        class_id = request.POST.get("class_id")
         usr = request.user.username
         s = Student.objects.get(id__username=usr)
-        cl = Class.objects.get(id=class_id)
-        cl.students.add(s)
-        cl.save()
+        try:
+            cl = Class.objects.filter(id=class_id)
+        except Exception as e:
+            signal = 1
+            return redirect("/studentClass")
+        if len(cl) != 0:
+            cl[0].students.add(s)
+            cl[0].save()
+            signal = 2
+        else:
+            signal = 1
     return redirect("/studentClass")
