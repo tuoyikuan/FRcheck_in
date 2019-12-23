@@ -105,8 +105,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-LOGIN_REDIRECT_URL = '/studentClass'
-LOGOUT_REDIRECT_URL = '/studentClass'
+LOGIN_REDIRECT_URL = '/studentMain'
+LOGOUT_REDIRECT_URL = '/accounts/login'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/

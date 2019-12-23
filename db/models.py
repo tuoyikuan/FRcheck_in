@@ -142,7 +142,7 @@ class ActivityHasFile(models.Model):
 class Discuss(models.Model):
     class_id = models.ForeignKey(Class, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
-    content = models.TextField
+    content = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     create_time = models.DateTimeField(auto_now=True)
 

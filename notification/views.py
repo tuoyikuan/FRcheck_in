@@ -1,13 +1,20 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 from django.db import models
 from db.models import *
+from utils.funcs import *
 from django import forms
 
 
+import pdb
+@login_required
 def show_noti_list(request, class_id):
+    if not in_class(request.user.id, class_id):
+        return redirect('/studentClass/denied')
+
     temp = Activity.objects.filter(class_id=class_id, type='Notification')
     templist = []
     for e in temp:
@@ -17,37 +24,55 @@ def show_noti_list(request, class_id):
             'content': e.content,
             'create_date': e.create_date,
             'author': e.author.username,
+            'class_id': class_id,
         })
 
     return render(request, 'notification/notification.html', {
         'note_list': templist,
+        'class_id': class_id,
+        'isteacher': is_teacher_of(request.user.id, class_id),
     })
 
 
-def show_noti(request, noti_id):
+@login_required
+def show_noti(request, class_id, noti_id):
+    temp = Activity.objects.get(id=noti_id)
+    class_id1 = temp.class_id
+
+    if not in_class(request.user.id, class_id1):
+        return redirect('/studentClass/denied')
+
     temp = Activity.objects.get(id=noti_id)
     return render(request, 'notification/show_noti.html', {
         'title': temp.title,
         'content': temp.content,
         'noti': noti_id,
-        'isAuthor': True,
+        'isAuthor': temp.author.id == request.user.id,
+        'class_id': class_id,
     })
 
 
-def delete_post(request, noti_id):
+@login_required
+def delete_post(request, class_id, noti_id):
     temp = Activity.objects.get(id=noti_id)
-    class_id = temp.class_id
+    class_id1 = temp.class_id
+    if not in_class(request.user.id, class_id1):
+        return redirect('/studentClass/denied')
     temp.delete()
-    return redirect('/notification/?class_id=%d' % class_id.id)
+    return redirect('/studentClass/%d/notification/' % class_id1.id)
 
 
-def create_form(request):
-    class_id = request.GET.get('class_id')
+@login_required
+def create_form(request, class_id):
+    if not in_class(request.user.id, class_id):
+        return redirect('/studentClass/denied')
     return render(request, 'notification/new_notification.html', {'class_id': class_id})
 
 
-def create_post(request):
-    class_id = request.GET.get('class_id')
+@login_required
+def create_post(request, class_id):
+    if not in_class(request.user.id, class_id):
+        return redirect('/studentClass/denied')
     if request.method == 'POST':
         title = request.POST.get('noti-title')
         content = request.POST.get('noti-content')
@@ -56,10 +81,10 @@ def create_post(request):
             type='Notification',
             title=title,
             content=content,
-            author_id=1,  # TODO
-            due_date='2020-12-31',
+            author_id=request.user.id,
+            due_date='2099-12-31',
         )
-        return redirect('/notification/%d' % class_id)
-    return redirect('/notification/%d' % class_id)
+        return redirect('/studentClass/%d/notification/' % class_id)
+    return redirect('/studentClass/%d/notification/' % class_id)
 
 # Create your views here.

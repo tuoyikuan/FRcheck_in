@@ -1,11 +1,7 @@
-from django.urls import path
 from django.urls import path, include
-from django.conf.urls import url
-from studentClass.views import *
 
 urlpatterns = [
-    path(r'', allClass),
-    path(r'addClass/', addClass),
-    path(r'section/', include("section.urls")),
-    path(r'notification/',include("notification.urls")),
+    path(r'<int:class_id>/section/', include("section.urls")),
+    path(r'<int:class_id>/discuss/', include("discuss.urls")),
+    path(r'<int:class_id>/notification/', include("notification.urls")),
 ]

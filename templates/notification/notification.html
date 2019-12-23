@@ -1,132 +1,106 @@
 {% extends "common.html" %}
-{% block 'kk' %}
-
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
-                            <div class="section-block">
-                                <h1 class="section-title">课程</h1>
-                                <br>
-                                <h2>《程序设计方法学》</h2>
-                            </div>
-        <br>
-        <br>
-
-                            <div class="tab-regular">
-                                <ul class="nav nav-tabs nav-fill" id="myTab7" role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" id="home-tab-justify" data-toggle="tab" href="/studentClass/section/?class_id={{ class_id }}" role="tab" aria-controls="home" aria-selected="true">章节</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="profile-tab-justify" data-toggle="tab" href="/studentClass/notification/?class_id={{ class_id }}" role="tab" aria-controls="profile" aria-selected="false">通知</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="contact-tab-justify" data-toggle="tab" href="/studentClass/homework/?class_id={{ class_id }}" role="tab" aria-controls="contact" aria-selected="false">作业</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="contact-tab-justify" data-toggle="tab" href="/studentClass/team/?class_id={{ class_id }}" role="tab" aria-controls="contact" aria-selected="false">小组</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="contact-tab-justify" data-toggle="tab" href="/studentClass/luntan/?class_id={{ class_id }}" role="tab" aria-controls="contact" aria-selected="false">论坛</a>
-                                    </li>
-                                </ul>
-                                <div class="tab-content" id="myTabContent7">
-                                    <div class="tab-pane fade show active" id="home-justify" role="tabpanel" aria-labelledby="home-tab-justify">
-                                        <p class="lead"> All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. </p>
-                                        <p>Phasellus non ante gravida, ultricies neque a, fermentum leo. Etiam ornare enim arcu, at venenatis odio mollis quis. Mauris fermentum elementum ligula in efficitur. Aliquam id congue lorem. Proin consectetur feugiasse platea dictumst. Pellentesque sed justo aliquet, posuere sem nec, elementum ante.</p>
-                                        <a href="#" class="btn btn-secondary">Go somewhere</a>
-                                    </div>
-                                    <div class="tab-pane fade" id="profile-justify" role="tabpanel" aria-labelledby="profile-tab-justify">
-                                        <p>Nullam et tellus ac ligula condimentum sodales. Aenean tincidunt viverra suscipit. Maecenas id molestie est, a commodo nisi. Quisque fringilla turpis nec elit eleifend vestibulum. Aliquam sed purus in odio ullamcorper congue consectetur in neque. Aenean sem ex, tempor et auctor sed, congue id neque. </p>
-                                    </div>
-                                    <div class="tab-pane fade" id="contact-justify" role="tabpanel" aria-labelledby="contact-tab-justify">
-                                        <p>Vivamus pellentesque vestibulum lectus vitae auctor. Maecenas eu sodales arcu. Fusce lobortis, libero ac cursus feugiat, nibh ex ultricies tortor, id dictum massa nisl ac nisi. Fusce a eros pellentesque, ultricies urna nec, consectetur dolor. Nam dapibus scelerisque risus, a commodo mi tempus eu.</p>
-                                    </div>
-                                </div>
-                            </div>
-    </div>
-
-
-
-
-
-
-
 {% block kk %}
-                <!-- ============================================================== -->
-                <!-- pageheader -->
-                <!-- ============================================================== -->
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="page-header">
-                            <h2 class="pageheader-title">课程通知 </h2>
-                            <p class="pageheader-text">老师和助教发布的通知列表</p>
-                            <div class="page-breadcrumb">
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
-                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Tables</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">General Tables</li>
-                                    </ol>
-                                </nav>
-                            </div>
+    <!-- ============================================================== -->
+    <!-- pageheader -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">课程通知 </h2>
+                <p class="pageheader-text">老师和助教发布的通知列表</p>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Tables</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">General Tables</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end pageheader -->
+    <!-- ============================================================== -->
+
+
+    <div class="row">
+        <div class="tab-regular col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <ul class="nav nav-tabs nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link" href="/studentClass/{{ class_id }}/section/">章节</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/studentClass/{{ class_id }}/notification/">通知</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/studentClass/{{ class_id }}/homework/">作业</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/studentClass/{{ class_id }}/group/" role="tab">小组</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/studentClass/{{ class_id }}/discuss/" role="tab">论坛</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent7">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="card">
+                        <h5 class="card-header">通知列表</h5>
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th scope="col" style="width:20%">#</th>
+                                    <th scope="col" style="width:40%">标题</th>
+                                    <th scope="col" style="width:20%">日期</th>
+                                    <th scope="col" style="width:20%">发布人</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% if note_list|length >= 1 %}
+                                    {% for e in note_list %}
+                                        <tr class="clickable-row" data-no="{{ e.noti_id }}">
+                                            <th scope="row">{{forloop.counter}}</th>
+                                            <td>{{e.title}}</td>
+                                            <td>{{e.create_date}}</td>
+                                            <td>{{e.author}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr class="clickable-row" data-no="0">
+                                        <th scope="row"></th>
+                                        <td>暂无通知</td>
+                                        <td>{{e.create_date}}</td>
+                                        <td>{{e.author}}</td>
+                                    </tr>
+                                {% endif %}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-                <!-- ============================================================== -->
-                <!-- end pageheader -->
-                <!-- ============================================================== -->
-
-
-                    <div class="row">
-                        <!-- ============================================================== -->
-                        <!-- hoverable table -->
-                        <!-- ============================================================== -->
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <div class="card">
-                                <h5 class="card-header">通知列表</h5>
-                                <div class="card-body">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" style="width:20%">#</th>
-                                                <th scope="col" style="width:40%">标题</th>
-                                                <th scope="col" style="width:20%">日期</th>
-                                                <th scope="col" style="width:20%">发布人</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-											{% if note_list|length >= 1 %}
-											{% for e in note_list %}
-                                                <tr class="clickable-row" data-no="{{ e.noti_id }}">
-                                                    <th scope="row">{{forloop.counter}}</th>
-                                                    <td>{{e.title}}</td>
-                                                    <td>{{e.create_date}}</td>
-                                                    <td>{{e.author}}</td>
-                                                </tr>
-											{% endfor %}
-                                            {% else %}
-                                                <tr class="clickable-row" data-no="{{ e.noti_id }}">
-                                                    <th scope="row"></th>
-                                                    <td>暂无通知</td>
-                                                    <td>{{e.create_date}}</td>
-                                                    <td>{{e.author}}</td>
-                                                </tr>
-											{% endif %}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- ============================================================== -->
-                        <!-- end hoverable table -->
-                        <!-- ============================================================== -->
-                    </div>
+                {% if isteacher %}
+                <div class="row">
+                    <div class="col-9"></div>
+                    <a class="btn btn-primary col-3" href="/studentClass/{{ class_id }}/notification/create">发布通知</a>
+                </div>
+                {% endif %}
             </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end hoverable table -->
+        <!-- ============================================================== -->
+    </div>
+    </div>
 {% endblock %}
 {% block script %}
     <script type="text/javascript">
         $(document).ready(function() {
             $(".clickable-row").click(function() {
-                window.location = "../check/"+$(this).data("no");
+                if($(this).data("no")!=0)
+                    window.location = "/studentClass/{{ class_id }}/notification/check/"+$(this).data("no");
             });
         });
     </script>

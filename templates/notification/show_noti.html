@@ -34,13 +34,15 @@
 					<div class="card-body">
 						<h3 class="card-title">{{title}}</h3>
 						<p class="card-text">{{content}}</p>
-						<div class="row">
-							<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9"></div>
-							<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                        <div class="row" >
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-right">
+                                <a href="/studentClass/{{ class_id }}/notification/" class="btn btn-primary">返回列表</a>
+                            </div>
+                        </div>
+						<div class="row mt-2">
+							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-right">
 								{% if isAuthor %}
-								<a href="/notification/delete_post/{{noti}}/" class="btn btn-primary">Delete This Notification</a>
-								{% else %}
-								<a href="#" class="btn btn-primary">Go somewhere</a>
+								<a href="/studentClass/{{ class_id }}/notification/delete_post/{{ noti }}" class="btn btn-danger">删除通知</a>
 								{% endif %}
 							</div>
 						</div>

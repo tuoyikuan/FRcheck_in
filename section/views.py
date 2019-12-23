@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from db.models import *
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
-def section(request):
-    class_id = request.GET.get('class_id')
 
+@login_required
+def section(request, class_id):
     """section"""
     sections = Section.objects.filter(class_id__id=class_id).all()
     tmpSection = []

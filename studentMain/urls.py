@@ -4,5 +4,7 @@ from  studentMain.views import *
 
 
 urlpatterns = [
-    path(r'', main),
+    path(r'', main, name='sutdent_main'),
+    path(r'allClass/', allClass, name='all_class'),
+    path(r'addClass/', addClass, name='add_class'),
 ]
