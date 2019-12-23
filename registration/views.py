@@ -6,6 +6,8 @@ from db.models import *
 
 import pdb
 # Create your views here.
+
+
 def register_post(request):
     username = request.POST.get('username')
     password = request.POST.get('password1')
