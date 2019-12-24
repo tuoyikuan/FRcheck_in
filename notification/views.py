@@ -39,8 +39,8 @@ def show_noti(request, class_id, noti_id):
     temp = Activity.objects.get(id=noti_id)
     class_id1 = temp.class_id
 
-    if not in_class(request.user.id, class_id1):
-        return redirect('/studentClass/denied')
+    #if not in_class(request.user.id, class_id1):
+     #   return redirect('/studentClass/denied')
 
     temp = Activity.objects.get(id=noti_id)
     return render(request, 'notification/show_noti.html', {

@@ -55,9 +55,9 @@ def create_new_sec(request, class_id):
         if len(Section.objects.filter(class_id=cl, number=number).all()) == 0:
             sec = Section(class_id=cl, name=name, number=number, info=info)
             sec.save()
-            return redirect("/studentCLass/%d/section" %(class_id))
+            return redirect("/studentClass/%d/section" % class_id)
         else:
-            return redirect("/studentCLass/%d/section" %(class_id))
+            return redirect("/studentClass/%d/section" % class_id)
 
 
 @login_required

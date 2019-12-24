@@ -1,0 +1,131 @@
+{% extends "common.html" %}
+{% block kk %}
+    <!-- ============================================================== -->
+    <!-- pageheader -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title"> 组队信息 </h2>
+                <p class="pageheader-text">该课程的学习小组</p>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Tables</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">General Tables</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end pageheader -->
+    <!-- ============================================================== -->
+
+
+    <div class="row">
+        <div class="tab-regular col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <ul class="nav nav-tabs nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link" href="/studentClass/{{ class_id }}/section/">章节</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/studentClass/{{ class_id }}/notification/">通知</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/studentClass/{{ class_id }}/homework/">作业</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/studentClass/{{ class_id }}/group/" role="tab">小组</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/studentClass/{{ class_id }}/discuss/" role="tab">论坛</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent7">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <form  action="/studentClass/{{ class_id }}/group/new_group/" method="post">
+                        {% csrf_token %}
+                        {% if signal == 1 %}
+                            <div class="row">
+                                <p style="color: red">小组不存在</p>
+                            </div>
+                        {% elif signal == 2 %}
+                            <div class="row">
+                                <p style="color: green">已加入小组</p>
+                            </div>
+                        {% endif %}
+                        <div class="row" style="text-align: center">
+                            <div class="input-group input-group-round" style="width: 80%; margin-right: 5%">
+                                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-search"></i>
+                    </span>
+                                </div>
+                                <input type="text" name="class_id" class="form-control filter-list-input" placeholder="小组编号" aria-label="">
+                            </div>
+                            <input type="submit" class="btn btn-rounded btn-primary" style="width: 15%" value="加入课程">
+                        </div>
+                    </form>
+                    <p></p>
+                    <div class="card">
+                        <h5 class="card-header">小组成员</h5>
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th scope="col" style="width:20%">#</th>
+                                    <th scope="col" style="width:40%">组员</th>
+                                    <th scope="col" style="width:20%">加入日期</th>
+                                    <th scope="col" style="width:20%">职务</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% if note_list|length >= 1 %}
+                                    {% for e in note_list %}
+                                        <tr class="clickable-row" data-no="{{ e.noti_id }}">
+                                            <th scope="row">{{forloop.counter}}</th>
+                                            <td>{{e.title}}</td>
+                                            <td>{{e.create_date}}</td>
+                                            <td>{{e.author}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr class="clickable-row" data-no="0">
+                                        <th scope="row"></th>
+                                        <td>暂无通知</td>
+                                        <td>{{e.create_date}}</td>
+                                        <td>{{e.author}}</td>
+                                    </tr>
+                                {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                {% if isteacher %}
+                    <div class="row">
+                        <div class="col-9"></div>
+                        <a class="btn btn-primary col-3" href="/studentClass/{{ class_id }}/notification/create">发布通知</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end hoverable table -->
+        <!-- ============================================================== -->
+    </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".clickable-row").click(function() {
+                if($(this).data("no")!=0)
+                    window.location = "/studentClass/{{ class_id }}/notification/check/"+$(this).data("no");
+            });
+        });
+    </script>
+{% endblock %}
