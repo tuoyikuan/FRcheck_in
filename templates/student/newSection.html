@@ -1,0 +1,77 @@
+{% extends "common.html" %}
+{% block kk %}
+    {% load static %}
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
+        <div class="section-block">
+            <h1 class="section-title">课程</h1>
+            <br>
+            <h2>{{ class_name }}</h2>
+        </div>
+        <br>
+        <br>
+
+        <div class="tab-regular">
+            <ul class="nav nav-tabs nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/studentClass/{{ class_id }}/section/">章节</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/studentClass/{{ class_id }}/notification/">通知</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/studentClass/{{ class_id }}/homework/">作业</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/studentClass/{{ class_id }}/group/" role="tab">小组</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/studentClass/{{ class_id }}/discuss/" role="tab">论坛</a>
+                </li>
+            </ul>
+            <div>
+                <br>
+                <form action="/studentClass/{{ class_id }}/section/create/new/" method="post">
+                    {% csrf_token %}
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="card">
+                                <h5 class="card-header">新建章节</h5>
+                                <div class="card-body">
+                                    <form id="validationform" data-parsley-validate="" novalidate="">
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">章节名称</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <input type="text" required="" placeholder="章节名称"  name="name" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">章节号</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <input required="" type="number" min="1" max="100" name="number" placeholder="章节号" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">章节内容</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <textarea required="" class="form-control" name="info"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row text-right">
+                                            <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+                                                <button type="submit" class="btn btn-space btn-primary">提交</button>
+
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div style="margin-left: 70%">
+                                        <a href="/studentClass/{{ class_id }}/section">
+                                            <div class="btn btn-space btn-secondary">取消</div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
