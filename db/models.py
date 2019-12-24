@@ -8,6 +8,7 @@ class User(djmod.User):
 
 class File(models.Model):
     url = models.CharField(max_length=200)
+    name = models.CharField(max_length=200)
     uploader = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
@@ -58,9 +59,9 @@ class Class(models.Model):
 
 class Section(models.Model):
     class_id = models.ForeignKey(Class, on_delete=models.CASCADE)
-    number = models.CharField(max_length=50)
+    number = models.IntegerField()
     name = models.CharField(max_length=50)
-    subsection = models.ForeignKey('self', on_delete=models.CASCADE)
+    info = models.TextField(max_length=50)
     files = models.ManyToManyField(
         File,
         through='SectionHasFile',
