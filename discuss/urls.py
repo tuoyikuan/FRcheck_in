@@ -8,4 +8,6 @@ urlpatterns = [
     path('create_msg/', views.create_msg, name='create_msg'),
     path('delete_msg/<int:e_id>/', views.delete_msg, name='delete_msg'),
     path('chatting/<int:e_id>/', views.chatting, name='chatting'),
+    path('chatting/<int:e_id>/create_post/', views.create_post, name='create_post'),
+    path('chatting/<int:e_id>/delete_post/<int:post_id>/', views.delete_post, name='delete_post'),
 ]

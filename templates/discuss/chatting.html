@@ -37,78 +37,84 @@
                             </div>
                             <div class="chat-item-body">
                                 <p>Content:{{  post_list.content }}</p>
+                                <div class="row">
+                                <div class="col-sm-11"></div>
+                                <div class="col-sm-1">
+                                <p class="text-right">
+                                    <button class="btn btn-xs btn-primary btn-block" onclick="clcl();" id="newq">Reply</button>
+                                </p>
+                                </div>
                             </div>
-                        </div>
+                            </div>
 
-                        {% ifequal post_list.author current_user %}
-                            <p class="text-right">
-                                <a href="/studentClass/{{ class_id }}/discuss/delete_msg/{{ post_list.id }}/">
-                                    <button class="btn btn-link">
-                                        <i class="fas fa-window-close"></i>
-                                    </button>
-                                </a>
-                            </p>
-                        {% endifequal %}
+                            <h2 class="pageheader-title" id="newq_title" style="display: none">
+                                <form class="chat-form" id="newq_form" style="display: none" action="/studentClass/{{ post_list.class_id }}/discuss/chatting/{{ post_list.id }}/create_post/"  method="post">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="content">Content</label>
+                                        <textarea class="form-control" id="content" placeholder="Type message" rows="1" name="msg_content"></textarea>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6"></div>
+                                        <div class="col-sm-6">
+                                        <p class="text-right">
+                                            <button type="submit" class="btn btn-link">
+                                                <i class="fas fa-arrow-circle-up"></i>
+                                            </button>
+                                        </p>
+                                        </div>
+                                    </div>
+                                </form>
+                            </h2>
+                        </div>
                     </div>
                 </div>
+
                 {%  for e in reply_list %}
                     <div class="media chat-item">
-                        <img alt="Fallon" src="{% static 'assets/images/avatar-3.jpg' %}" class="rounded-circle user-avatar-lg">
                         <div class="media-body">
                             <div class="chat-item-title">
-                                <span class="chat-item-author">{{ e.name }}</span>
+                                <span class="chat-item-author">{{ e.name }} : {{ e.content }}</span>
                                 <span>{{ e.time_str }}</span>
                             </div>
-                            <div>
-                                <div class="chat-item-body">
-                                    <p>Title:{{ e.title }}</p>
-                                </div>
-                                <div class="chat-item-body">
-                                    <p>Content:{{ e.content }}</p>
-                                </div>
-                            </div>
 
-                            {% ifequal e.author current_user %}
-                                <p class="text-right">
-                                    <a href="/studentClass/{{ class_id }}/discuss/delete_msg/{{ e.id }}/">
+                            <p class="text-right">
+                                <a href="/studentClass/{{ class_id }}/discuss/chatting/{{ e.id }}/">
+                                    <button class="btn btn-link">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </a>
+
+                                {% if e.name == current_user or is_teacher %}
+                                    <a href="/studentClass/{{ post_list.class_id }}/discuss/chatting/{{ post_list.id }}/delete_post/{{ e.id }}/">
                                         <button class="btn btn-link">
                                             <i class="fas fa-window-close"></i>
                                         </button>
                                     </a>
-                                </p>
-                            {% endifequal %}
+                                {% endif %}
+                            </p>
                         </div>
                     </div>
                 {% endfor %}
-
             </div>
         </div>
-        <div class="chat-module-bottom">
-            <form class="chat-form" action="/studentClass/{{ class_id }}/discuss/create_msg/"  method="post">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="title" class="col-form-label">Title</label>
-                    <input id="title" type="text" class="form-control" placeholder="Type title" name="msg_title">
-                </div>
-                <div class="form-group">
-                    <label for="content">Content</label>
-                    <textarea class="form-control" id="content" placeholder="Type message" rows="1" name="msg_content"></textarea>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6"></div>
-                    <div class="col-sm-6">
-                        <p class="text-right">
-                            <button type="submit" class="btn btn-link">
-                                <i class="fas fa-arrow-circle-up"></i>
-                            </button>
-                            <button class="btn btn-link">
-                                <i class="fas fa-window-close"></i>
-                            </button>
-                        </p>
-                    </div>
-                </div>
-            </form>
-
-        </div>
     </div>
+</div>
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript">
+        lclc=(function() {
+            document.getElementById("newq").textContent="Reply";
+            document.getElementById("newq").onclick=clcl;
+            document.getElementById("newq_title").style.display='none';
+            document.getElementById("newq_form").style.display='none';
+        });
+        clcl=(function() {
+            document.getElementById("newq").textContent="Fold";
+            document.getElementById("newq").onclick=lclc;
+            document.getElementById("newq_title").style.display='block';
+            document.getElementById("newq_form").style.display='block';
+        });
+    </script>
 {% endblock %}

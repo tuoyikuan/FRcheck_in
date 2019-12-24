@@ -78,23 +78,21 @@ def chatting(request, class_id, e_id):
         'time_str': t.create_time,
         'content': t.content,
         'title': t.title,
-        'author': t.author,
         'id': t.id,
+        'class_id': class_id,
     })
     for e in temp:
         templist.append({
             'name': e.author.username,
-            'reply_name': e.reply.author.username,
             'time_str': e.create_time,
             'content': e.content,
-            'title': e.title,
-            'author': e.author,
             'id': e.id,
         })
     return render(request, 'discuss/chatting.html', {
         'post_list': tlist[0],
-        'current_user': User.objects.get(id=1),
+        'current_user': request.user.username,
         'reply_list': templist,
+        'is_teacher': is_teacher_of(request.user.id, class_id),
     })
 
 
@@ -103,3 +101,21 @@ def discuss_root(request, class_id):
     if not in_class(request.user.id, class_id):
         return redirect('/studentClass/denied')
     return redirect('/studentClass/%d/discuss/' % class_id)
+
+
+def create_post(request, class_id, e_id):
+    if request.method == 'POST':
+        content = request.POST.get('msg_content')
+        Post.objects.create(
+            discuss=Discuss.objects.get(id=e_id),
+            content=content,
+            author=User.objects.get(id=request.user.id),
+        )
+        return redirect('/studentClass/%d/discuss/chatting/%d' % (class_id, e_id))
+    return redirect('/studentClass/%d/discuss/chatting/%d' % (class_id, e_id))
+
+
+def delete_post(request, class_id, e_id, post_id):
+    temp = Post.objects.get(id=post_id)
+    temp.delete()
+    return redirect('/studentClass/%d/discuss/chatting/%d' % (class_id, e_id))
