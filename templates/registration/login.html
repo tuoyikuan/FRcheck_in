@@ -39,7 +39,6 @@
             <div class="card-body">
                 <form method="post">
                     {% csrf_token %}
-                    {{ form.errors }}
                     {% if form.errors|length %}
                         <div class="form-group">
                             <span class="splash-description" style="color: red">Wrong username or password.</span>

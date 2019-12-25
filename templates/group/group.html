@@ -46,7 +46,9 @@
             </ul>
             <div class="tab-content" id="myTabContent7">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <form  action="/studentClass/{{ class_id }}/group/new_group/" method="post">
+                    {% if unlocked %}
+                    {% if not member_list|length >= 1 %}
+                    <form  action="/studentClass/{{ class_id }}/group/join/" method="post">
                         {% csrf_token %}
                         {% if signal == 1 %}
                             <div class="row">
@@ -56,19 +58,64 @@
                             <div class="row">
                                 <p style="color: green">已加入小组</p>
                             </div>
-                        {% endif %}
-                        <div class="row" style="text-align: center">
-                            <div class="input-group input-group-round" style="width: 80%; margin-right: 5%">
-                                <div class="input-group-prepend">
-                    <span class="input-group-text">
-                        <i class="fas fa-search"></i>
-                    </span>
-                                </div>
-                                <input type="text" name="class_id" class="form-control filter-list-input" placeholder="小组编号" aria-label="">
+                        {% elif signal == 3 %}
+                            <div class="row">
+                                <p style="color: red">小组被锁定</p>
                             </div>
-                            <input type="submit" class="btn btn-rounded btn-primary" style="width: 15%" value="加入课程">
-                        </div>
+                        {% endif %}
+                            <div class="row" style="text-align: center">
+                                <div class="input-group input-group-round" style="width: 80%; margin-right: 5%">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-search"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" name="ver_number" class="form-control filter-list-input" placeholder="小组邀请码" aria-label="">
+                                </div>
+                                <input type="submit" class="btn btn-rounded btn-primary" style="width: 15%" value="加入小组">
+                            </div>
                     </form>
+                    {% endif %}
+                    <p></p>
+                    <div class="row">
+                        {% if member_list|length >= 1 %}
+                            <form action="/studentClass/{{ class_id }}/group/leave/" method="post" class="col-12">
+                                {% csrf_token %}
+                                {% if is_leader %}
+                                <button class="btn btn-danger btn-block" href="/studentClass/{{ class_id }}/group//" type="submit">解散小组</button>
+                                {% else %}
+                                    <button class="btn btn-secondary btn-block" href="/studentClass/{{ class_id }}/group//" type="submit">退出小组</button>
+                                {% endif %}
+
+                            </form>
+                        {% else %}
+                            <a class="btn btn-primary btn-block" href="/studentClass/{{ class_id }}/group/create/">创建小组</a>
+                        {% endif %}
+                    </div>
+                        {% else %}
+                        <div class="center-block">
+                            <a class="btn btn-light btn-block">分组已被老师锁定</a>
+                        </div>
+                    {% endif %}
+                    <div class="row">
+                    {% if is_leader %}
+                        <form action="/studentClass/{{ class_id }}/group/change_ver/" method="post" class="col-12 mt-5">
+                        {% csrf_token %}
+                        {% if signal == 1 %}
+                            <label>
+                            <span style="color: red">
+                            此邀请码已被使用
+                            </span>
+                            </label>
+                        {% endif %}
+                        <div class="row">
+                            <p class="col-6">当前邀请码为：{{ ver_number }}</p>
+                            <input class="form-control filter-list-input col-4" type="text" name="ver_number" placeholder="新邀请码">
+                            <button class="btn btn-primary col-2">更换邀请码</button>
+                        </div>
+                        </form>
+                    {% endif %}
+                    </div>
                     <p></p>
                     <div class="card">
                         <h5 class="card-header">小组成员</h5>
@@ -78,26 +125,44 @@
                                 <tr>
                                     <th scope="col" style="width:20%">#</th>
                                     <th scope="col" style="width:40%">组员</th>
-                                    <th scope="col" style="width:20%">加入日期</th>
+                                    <th scope="col" style="width:20%">组名</th>
                                     <th scope="col" style="width:20%">职务</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% if note_list|length >= 1 %}
-                                    {% for e in note_list %}
-                                        <tr class="clickable-row" data-no="{{ e.noti_id }}">
+                                {% if member_list|length >= 1 %}
+                                    {% for e in member_list %}
+                                        <tr>
                                             <th scope="row">{{forloop.counter}}</th>
-                                            <td>{{e.title}}</td>
-                                            <td>{{e.create_date}}</td>
-                                            <td>{{e.author}}</td>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-8">
+                                                        {{e.username}}
+                                                    </div>
+                                                    {% if is_leader and not e.is_leader and unlocked %}
+                                                        <div class="col-4">
+                                                            <form action="/studentClass/{{ class_id }}/group/kick/{{ e.id }}/" method="post">
+                                                                {% csrf_token %}
+                                                                <button class="btn btn-danger btn-xs">踢出组员</button>
+                                                            </form>
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                            </td>
+                                            <td>{{e.group_name}}</td>
+                                            <td>
+                                                {% if e.is_leader == True %} 组长
+                                                {% else %} 组员
+                                                {% endif %}
+                                            </td>
                                         </tr>
                                     {% endfor %}
                                 {% else %}
-                                    <tr class="clickable-row" data-no="0">
+                                    <tr>
                                         <th scope="row"></th>
-                                        <td>暂无通知</td>
-                                        <td>{{e.create_date}}</td>
-                                        <td>{{e.author}}</td>
+                                        <td>暂无分组</td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
                                 {% endif %}
                                 </tbody>
@@ -118,14 +183,4 @@
         <!-- ============================================================== -->
     </div>
     </div>
-{% endblock %}
-{% block script %}
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $(".clickable-row").click(function() {
-                if($(this).data("no")!=0)
-                    window.location = "/studentClass/{{ class_id }}/notification/check/"+$(this).data("no");
-            });
-        });
-    </script>
 {% endblock %}
