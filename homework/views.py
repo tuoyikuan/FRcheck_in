@@ -97,9 +97,7 @@ def new_act(request, class_id):
     if request.method == 'POST':
         title = request.POST.get('act-title')
         due_date = request.POST.get('due_date')
-        print(due_date)
-        due_date = datetime.strptime(due_date, '%Y-%m-%d')
-        print(due_date)
+        due_date = datetime.strptime(due_date, '%Y-%m-%dT%H:%M')
         activity = Activity(
             class_id_id=class_id,
             type='Homework',

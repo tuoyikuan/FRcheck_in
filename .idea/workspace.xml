@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="47f7e188-3a9e-469c-9924-18f3cca4a4ee" name="Default Changelist" comment="" />
+    <list default="true" id="47f7e188-3a9e-469c-9924-18f3cca4a4ee" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/demo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/demo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homework/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/homework/views.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,7 +65,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="JavaScript Debug.teacherMain.html">
+  <component name="RunManager" selected="Django server.demo">
     <configuration name="teacherMain.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/platform/templates/teacher/teacherMain.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -84,6 +89,29 @@
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="demo" type="Python.DjangoServer" factoryName="Django server">
+      <module name="demo" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
       <method v="2" />
     </configuration>
     <recent_temporary>
@@ -147,6 +175,8 @@
       <workItem from="1577853033517" duration="8238000" />
       <workItem from="1577872794960" duration="7927000" />
       <workItem from="1577963499038" duration="710000" />
+      <workItem from="1577991531811" duration="5537000" />
+      <workItem from="1577997248726" duration="390000" />
     </task>
     <servers />
   </component>
@@ -193,6 +223,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="212" height="477" key="HiddenNamespacesPopup/0.0.1536.824@0.0.1536.824" timestamp="1577348671983" />
+    <state x="833" y="267" key="RollbackChangesDialog" timestamp="1577997347530">
+      <screen x="0" y="0" width="2048" height="1112" />
+    </state>
+    <state x="833" y="267" key="RollbackChangesDialog/0.0.2048.1112@0.0.2048.1112" timestamp="1577997347530" />
     <state x="108" y="77" key="SettingsEditor" timestamp="1577415111587">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -205,10 +239,11 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="564" y="331" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1577272027106" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1577860872209">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="575" y="196" width="896" height="915" key="search.everywhere.popup" timestamp="1577994459806">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1577860872209" />
+    <state x="575" y="196" width="896" height="915" key="search.everywhere.popup/0.0.2048.1112@0.0.2048.1112" timestamp="1577994459806" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/platform$manage.coverage" NAME="manage Coverage Results" MODIFIED="1577275898302" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
