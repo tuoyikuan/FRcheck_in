@@ -1,4 +1,4 @@
-{% extends "common.html" %}
+{% extends "commonTeacher.html" %}
 {% block kk %}
     <!-- ============================================================== -->
     <!-- pageheader -->
@@ -29,19 +29,19 @@
         <div class="tab-regular col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <ul class="nav nav-tabs nav-fill">
                 <li class="nav-item">
-                    <a class="nav-link" href="/studentClass/{{ class_id }}/section/">章节</a>
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/section/">章节</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="/studentClass/{{ class_id }}/notification/">通知</a>
+                    <a class="nav-link active" href="/teacherClass/{{ class_id }}/notification/">通知</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/studentClass/{{ class_id }}/homework/">作业</a>
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/homework/">作业</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/studentClass/{{ class_id }}/group/" role="tab">小组</a>
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/group/" role="tab">小组</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/studentClass/{{ class_id }}/discuss/" role="tab">论坛</a>
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/discuss/" role="tab">论坛</a>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent7">
@@ -81,12 +81,10 @@
                         </div>
                     </div>
                 </div>
-                {% if isteacher %}
                 <div class="row">
                     <div class="col-9"></div>
-                    <a class="btn btn-primary col-3" href="/studentClass/{{ class_id }}/notification/create">发布通知</a>
+                    <a class="btn btn-primary col-3" href="/teacherClass/{{ class_id }}/notification/create">发布通知</a>
                 </div>
-                {% endif %}
             </div>
         </div>
         <!-- ============================================================== -->
@@ -100,7 +98,7 @@
         $(document).ready(function() {
             $(".clickable-row").click(function() {
                 if($(this).data("no")!=0)
-                    window.location = "/studentClass/{{ class_id }}/notification/check/"+$(this).data("no");
+                    window.location = "/teacherClass/{{ class_id }}/notification/check/"+$(this).data("no");
             });
         });
     </script>

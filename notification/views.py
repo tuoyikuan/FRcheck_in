@@ -13,7 +13,7 @@ import pdb
 @login_required
 def show_noti_list(request, class_id):
     if not in_class(request.user.id, class_id):
-        return redirect('/studentClass/denied')
+        return redirect('/teacherClass/denied')
 
     temp = Activity.objects.filter(class_id=class_id, type='Notification')
     templist = []
@@ -39,9 +39,6 @@ def show_noti(request, class_id, noti_id):
     temp = Activity.objects.get(id=noti_id)
     class_id1 = temp.class_id
 
-    if not in_class(request.user.id, class_id1):
-        return redirect('/studentClass/denied')
-
     temp = Activity.objects.get(id=noti_id)
     return render(request, 'notification/show_noti.html', {
         'title': temp.title,
@@ -57,22 +54,22 @@ def delete_post(request, class_id, noti_id):
     temp = Activity.objects.get(id=noti_id)
     class_id1 = temp.class_id
     if not in_class(request.user.id, class_id1):
-        return redirect('/studentClass/denied')
+        return redirect('/teacherClass/denied')
     temp.delete()
-    return redirect('/studentClass/%d/notification/' % class_id1.id)
+    return redirect('/teacherClass/%d/notification/' % class_id1.id)
 
 
 @login_required
 def create_form(request, class_id):
     if not in_class(request.user.id, class_id):
-        return redirect('/studentClass/denied')
+        return redirect('/teacherClass/denied')
     return render(request, 'notification/new_notification.html', {'class_id': class_id})
 
 
 @login_required
 def create_post(request, class_id):
     if not in_class(request.user.id, class_id):
-        return redirect('/studentClass/denied')
+        return redirect('/teacherClass/denied')
     if request.method == 'POST':
         title = request.POST.get('noti-title')
         content = request.POST.get('noti-content')
@@ -84,7 +81,7 @@ def create_post(request, class_id):
             author_id=request.user.id,
             due_date='2099-12-31',
         )
-        return redirect('/studentClass/%d/notification/' % class_id)
-    return redirect('/studentClass/%d/notification/' % class_id)
+        return redirect('/teacherClass/%d/notification/' % class_id)
+    return redirect('/teacherClass/%d/notification/' % class_id)
 
 # Create your views here.

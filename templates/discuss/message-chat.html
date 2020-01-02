@@ -28,19 +28,19 @@
         <div class="tab-regular col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <ul class="nav nav-tabs nav-fill">
                 <li class="nav-item">
-                    <a class="nav-link" href="/studentClass/{{ class_id }}/section/">章节</a>
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/section/">章节</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/studentClass/{{ class_id }}/notification/">通知</a>
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/notification/">通知</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/studentClass/{{ class_id }}/homework/">作业</a>
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/homework/">作业</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/studentClass/{{ class_id }}/group/" role="tab">小组</a>
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/group/" role="tab">小组</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="/studentClass/{{ class_id }}/discuss/" role="tab">论坛</a>
+                    <a class="nav-link active" href="/teacherClass/{{ class_id }}/discuss/" role="tab">论坛</a>
                 </li>
             </ul>
             <div class="tab-content">
@@ -48,7 +48,7 @@
                     <button class="btn btn-primary btn-block" onclick="clcl();" id="newq">新建问题</button>
                     <p></p>
                     <h2 class="pageheader-title" id="newq_title" style="display: none">提问</h2>
-                    <form class="chat-form" id="newq_form" style="display: none" action="/studentClass/{{ class_id }}/discuss/create_msg/"  method="post">
+                    <form class="chat-form" id="newq_form" style="display: none" action="/teacherClass/{{ class_id }}/discuss/create_msg/"  method="post">
                         {% csrf_token %}
                         <div class="form-group">
                             <label for="title" class="col-form-label">Title</label>
@@ -87,14 +87,14 @@
                                 </div>
 
                                 <p class="text-right">
-                                    <a href="/studentClass/{{ class_id }}/discuss/chatting/{{ e.id }}/">
+                                    <a href="/teacherClass/{{ class_id }}/discuss/chatting/{{ e.id }}/">
                                         <button class="btn btn-link">
                                             <i class="fas fa-paper-plane"></i>
                                         </button>
                                     </a>
 
                                     {% if e.name == current_user or is_teacher %}
-                                        <a href="/studentClass/{{ class_id }}/discuss/delete_msg/{{ e.id }}/">
+                                        <a href="/teacherClass/{{ class_id }}/discuss/delete_msg/{{ e.id }}/">
                                             <button class="btn btn-link">
                                                 <i class="fas fa-window-close"></i>
                                             </button>

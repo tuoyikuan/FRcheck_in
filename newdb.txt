@@ -3,15 +3,18 @@ from db.models import *
 u1=User.objects.create(username='user1', password='pwd1', info='')
 u2=User.objects.create(username='user2', password='pwd2', info='')
 u3=User.objects.create(username='user3', password='pwd3', info='')
+u4=User.objects.create(username='user4', password='pwd4', info='')
 
 s1=Student.objects.create(id=u1, student_id='3170101111', dept='CS')
 s2=Student.objects.create(id=u2, student_id='3170102222', dept='CS')
 s3=Student.objects.create(id=u3, student_id='3170103333', dept='CS')
+t1=Teacher.objects.create(id=u4, teacher_id='417001',dept='CS')
 
 c1=Class.objects.create(class_name='class1', info='')
 
 c1.students.add(s1)
 c1.students.add(s2)
 c1.students.add(s3)
+c1.teachers.add(t1)
 
 

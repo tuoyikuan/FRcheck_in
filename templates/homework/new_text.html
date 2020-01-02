@@ -1,0 +1,67 @@
+{% extends 'commonTeacher.html' %}
+{% block kk %}
+    <!-- ============================================================== -->
+    <!-- pageheader -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">发布作业 </h2>
+                <p class="pageheader-text">为课程创建新的简答题</p>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Tables</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">General Tables</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end pageheader -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <ul class="nav nav-tabs nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/homework/{{ act_id }}/create/choose/">选择题</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/homework/{{ act_id }}/create/blank/">填空题</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/teacherClass/{{ class_id }}/homework/{{ act_id }}/create/text/">简答题</a>
+                </li>
+            </ul>
+            <div class="card">
+                <h5 class="card-header">新建简答题</h5>
+                <div class="card-body">
+                    <form action="/teacherClass/{{ class_id }}/homework/{{ act_id }}/create/text/submit/" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="title" class="col-form-label">问题</label>
+                            <input id="title" type="text" class="form-control" name="question">
+                        </div>
+                        <div class="form-group">
+                            <label for="content">答案</label>
+                            <textarea class="form-control" id="content" rows="3" name="answer"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6"> </div>
+                            <div class="col-sm-6">
+                                <p class="text-right">
+                                    <button type="submit" class="btn btn-space btn-primary">Submit</button>
+                                    <a class="btn btn-space btn-secondary" href="/teacherClass/{{ class_id }}/homework/check/{{ act_id }}">Cancel</a>
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

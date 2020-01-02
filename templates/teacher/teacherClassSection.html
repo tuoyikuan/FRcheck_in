@@ -1,0 +1,65 @@
+{% extends "commonTeacher.html" %}
+{% block kk %}
+    {% load static %}
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
+        <div class="section-block">
+            <h1 class="section-title">课程</h1>
+            <br>
+            <h2>{{ class_name }}</h2>
+        </div>
+        <br>
+        <br>
+
+        <div class="tab-regular">
+            <ul class="nav nav-tabs nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/teacherClass/{{ class_id }}/section/">章节</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/notification/">通知</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/homework/">作业</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/group/" role="tab">小组</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/discuss/" role="tab">论坛</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent7">
+                {% ifequal 0 len %}
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                尚未有章节信息
+                            </h5>
+                        </div>
+                    </div>
+                {% endifequal %}
+                {% for section in section_lists %}
+                    <a href="/teacherClass/{{ class_id }}/section/detail/{{ section.number }}/">
+                    <br>
+                                <div class="card-header" >
+                                    <h2 class="row">
+                                        <div>
+                                            第 {{ section.section_number }} 章
+                                        </div>
+                                        <div class="col-xl-5 col-lg-5 col-md-5 col-sm-3 col-3">
+                                            {{ section.section_name }}
+                                        </div>
+                                    </h2>
+                                </div>
+
+                    </a>
+                {% endfor %}
+                <div class="row">
+                    <div class="col-9"></div>
+                    <a class="btn btn-primary col-3" href="/teacherClass/{{ class_id }}/section/create">发布新章节</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

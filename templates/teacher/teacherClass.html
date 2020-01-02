@@ -1,0 +1,121 @@
+{% extends "commonTeacher.html" %}
+{% block kk %}
+    {% load static %}
+    <!-- ============================================================== -->
+    <!-- pageheader -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">你好,{{ username }}</h2>
+                <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">我的课程</a></li>
+                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">课程列表</a></li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form  action="/teacherClass/addClass/" method="post">
+        <div class="row" style="text-align: center">
+            <div class="input-group input-group-round" style="width: 80%; margin-right: 5%">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fas fa-search"></i>
+                    </span>
+                </div>
+                <input type="text" name="class_id" class="form-control filter-list-input" placeholder="课程代码" aria-label="">
+            </div>
+            <input type="submit" class="btn btn-rounded btn-primary" style="width: 15%" value="加入课程">
+        </div>
+        {% csrf_token %}
+        {% if signal == 1 %}
+            <div class="row">
+                <p style="color: red">课程不存在</p>
+            </div>
+            {% elif signal == 2 %}
+            <div class="row">
+                <p style="color: green">已加入课程</p>
+            </div>
+        {% endif %}
+    </form>
+
+    <br>
+    <br>
+    <form  action="/teacherClass/createClass/" method="post">
+        <div class="row" style="text-align: center">
+            <div class="input-group input-group-round" style="width: 80%; margin-right: 5%">
+                <input type="text" name="class_name" class="form-control filter-list-input" placeholder="课程名称" aria-label="">
+            </div>
+            <br>
+            <br>
+            <div class="input-group input-group-round" style="width: 80%; margin-right: 5%">
+                <input type="text" name="class_info" class="form-control filter-list-input" placeholder="课程简介" aria-label="">
+            </div>
+            <input type="submit" class="btn btn-rounded btn-primary" style="width: 15%" value="创建课程">
+        </div>
+        {% csrf_token %}
+        {% if signal == 1 %}
+            <div class="row">
+                <p style="color: red">课程创建失败，已存在该课程</p>
+            </div>
+            {% elif signal == 2 %}
+            <div class="row">
+                <p style="color: green">已创建课程</p>
+            </div>
+        {% endif %}
+    </form>
+
+    <br>
+    <br>
+    {% ifequal 0 len %}
+        <div style="text-align: center">
+            <div class="text-body">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <h4 class="card-header">
+                        您好，您还未加入任何课程！
+                    </h4>
+                </div>
+            </div>
+        </div>
+    {% endifequal %}
+    {% for tmp in class_list %}
+        {% if forloop.counter0|divisibleby:2 %}
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <a href = "/teacherClass/{{tmp.class_id}}/section/">
+                        <div class="card">
+                            <h5 class="card-header">{{ tmp.class_name }}</h5>
+                            <div class="card-body">
+                                <div class="ct-chart-line ct-golden-section">{{ tmp.class_info }}</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% else %}
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <a href = "/teacherClass/{{tmp.class_id}}/section/">
+                        <div class="card">
+                            <h5 class="card-header">{{ tmp.class_name }}</h5>
+                            <div class="card-body">
+                                <div class="ct-chart-line ct-golden-section">{{ tmp.class_info }}</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+    {% if not class_list|length|divisibleby:2 %}
+        </div>
+    {% endif %}
+    </div>
+    <!-- ============================================================== -->
+    <!-- end main wrapper -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'commonTeacher.html' %}
+{% block kk %}
+    <!-- ============================================================== -->
+    <!-- pageheader -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">评分 </h2>
+                <p class="pageheader-text">为学生提交评分</p>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Tables</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">General Tables</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end pageheader -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <h5 class="card-header">评分</h5>
+                <div class="card-body">
+                    <form action="/teacherClass/{{ class_id }}/homework/{{ act_id }}/problem/{{ problem_id }}/up_score/{{ submit_id }}/" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="title" class="col-form-label">问题</label>
+                            <h5 class="question">{{ question }}</h5>
+                        </div>
+                        <div class="form-group">
+                            <label for="title" class="col-form-label">答案</label>
+                            <h5 class="answer">{{ answer }}</h5>
+                        </div>
+                        <div class="form-group">
+                            <label for="content">学生提交</label>
+                            <h5 class="answer">{{ submit }}</h5>
+                        </div>
+                        <div class="form-group">
+                            <label for="score">评分</label>
+                            <input type="number" name="score">
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6"> </div>
+                            <div class="col-sm-6">
+                                <p class="text-right">
+                                    <button type="submit" class="btn btn-space btn-primary">Submit</button>
+                                    <a class="btn btn-space btn-secondary" href="/teacherClass/{{ class_id }}/homework/{{ act_id }}/problem/{{ problem_id }}/student_submit/">Cancel</a>
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

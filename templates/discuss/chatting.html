@@ -1,10 +1,10 @@
-{% extends 'common.html' %}
+{% extends 'commonTeacher.html' %}
 {% block kk %}
     {% load static %}
     <div class="navbar bg-white breadcrumb-bar border-bottom">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/studentClass/{{ class_id }}/discuss/user_main/">My learning</a></li>
+                <li class="breadcrumb-item"><a href="/teacherClass/{{ class_id }}/discuss/user_main/">My learning</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Forum</li>
             </ol>
         </nav>
@@ -48,7 +48,7 @@
                             </div>
 
                             <h2 class="pageheader-title" id="newq_title" style="display: none">
-                                <form class="chat-form" id="newq_form" style="display: none" action="/studentClass/{{ post_list.class_id }}/discuss/chatting/{{ post_list.id }}/create_post/"  method="post">
+                                <form class="chat-form" id="newq_form" style="display: none" action="/teacherClass/{{ post_list.class_id }}/discuss/chatting/{{ post_list.id }}/create_post/"  method="post">
                                     {% csrf_token %}
                                     <div class="form-group">
                                         <label for="content">Content</label>
@@ -79,14 +79,14 @@
                             </div>
 
                             <p class="text-right">
-                                <a href="/studentClass/{{ class_id }}/discuss/chatting/{{ e.id }}/">
+                                <a href="/teacherClass/{{ class_id }}/discuss/chatting/{{ e.id }}/">
                                     <button class="btn btn-link">
                                         <i class="fas fa-paper-plane"></i>
                                     </button>
                                 </a>
 
                                 {% if e.name == current_user or is_teacher %}
-                                    <a href="/studentClass/{{ post_list.class_id }}/discuss/chatting/{{ post_list.id }}/delete_post/{{ e.id }}/">
+                                    <a href="/teacherClass/{{ post_list.class_id }}/discuss/chatting/{{ post_list.id }}/delete_post/{{ e.id }}/">
                                         <button class="btn btn-link">
                                             <i class="fas fa-window-close"></i>
                                         </button>

@@ -1,0 +1,57 @@
+{% extends 'commonTeacher.html' %}
+{% block kk %}
+    <!-- ============================================================== -->
+    <!-- pageheader -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">填空题 </h2>
+                <p class="pageheader-text">做题</p>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Tables</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">General Tables</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end pageheader -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <h5 class="card-header">填空题</h5>
+                <div class="card-body">
+                    <form action="/teacherClass/{{ class_id }}/homework/{{ act_id }}/problem/{{ problem_id }}/submit/" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="title" class="col-form-label">填空题问题</label>
+                            <h3 class="card-title">{{ question }}</h3>
+                        </div>
+                        <div class="form-group">
+                            <label for="content">填写答案</label>
+                            <textarea class="form-control" id="answer" rows="3" name="answer"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6"> </div>
+                            <div class="col-sm-6">
+                                <p class="text-right">
+                                    <button type="submit" class="btn btn-space btn-primary">提交</button>
+                                    <a class="btn btn-space btn-secondary" href="/teacherClass/{{ class_id }}/homework/check/{{ act_id }}/">取消</a>
+                                    <a class="btn btn-space btn-secondary" href="/teacherClass/{{ class_id }}/homework/{{ act_id }}/problem/{{ problem_id }}/student_submit/">查看学生提交</a>
+                               </p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

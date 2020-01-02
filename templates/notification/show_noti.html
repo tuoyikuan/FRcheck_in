@@ -1,4 +1,4 @@
-{% extends "common.html" %}
+{% extends "commonTeacher.html" %}
 {% block kk %}
 <div class="row">
 	<div class="col-xl-10">
@@ -36,13 +36,13 @@
 						<p class="card-text">{{content}}</p>
                         <div class="row" >
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-right">
-                                <a href="/studentClass/{{ class_id }}/notification/" class="btn btn-primary">返回列表</a>
+                                <a href="/teacherClass/{{ class_id }}/notification/" class="btn btn-primary">返回列表</a>
                             </div>
                         </div>
 						<div class="row mt-2">
 							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-right">
 								{% if isAuthor %}
-								<a href="/studentClass/{{ class_id }}/notification/delete_post/{{ noti }}" class="btn btn-danger">删除通知</a>
+								<a href="/teacherClass/{{ class_id }}/notification/delete_post/{{ noti }}" class="btn btn-danger">删除通知</a>
 								{% endif %}
 							</div>
 						</div>

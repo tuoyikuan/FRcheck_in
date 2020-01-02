@@ -1,4 +1,4 @@
-{% extends 'common.html' %}
+{% extends 'commonTeacher.html' %}
 {% block kk %}
     <!-- ============================================================== -->
     <!-- pageheader -->
@@ -28,7 +28,7 @@
             <div class="card">
                 <h5 class="card-header">新建通知</h5>
                 <div class="card-body">
-                    <form action="/studentClass/{{ class_id }}/notification/create_post/" method="post">
+                    <form action="/teacherClass/{{ class_id }}/notification/create_post/" method="post">
                         {% csrf_token %}
                         <div class="form-group">
                             <label for="title" class="col-form-label">通知标题</label>
@@ -43,7 +43,7 @@
                             <div class="col-sm-6">
                                 <p class="text-right">
                                     <button type="submit" class="btn btn-space btn-primary">Submit</button>
-                                    <a class="btn btn-space btn-secondary" href="/studentClass/{{ class_id }}/notification/">Cancel</a>
+                                    <a class="btn btn-space btn-secondary" href="/teacherClass/{{ class_id }}/notification/">Cancel</a>
                                 </p>
                             </div>
                         </div>

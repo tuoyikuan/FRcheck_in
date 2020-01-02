@@ -1,0 +1,98 @@
+{% extends "commonTeacher.html" %}
+{% block kk %}
+    {% load static %}
+  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
+        <div class="section-block">
+            <h1 class="section-title">课程</h1>
+            <br>
+            <h2>{{ class_name }}</h2>
+        </div>
+        <br>
+        <br>
+
+        <div class="tab-regular">
+            <ul class="nav nav-tabs nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/teacherClass/{{ class_id }}/section/">章节</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/notification/">通知</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/homework/">作业</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/group/" role="tab">小组</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/discuss/" role="tab">论坛</a>
+                </li>
+            </ul>
+            <div>
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                            <div class="row">
+                                <div style="margin-left: 2%">
+                                    第 {{ section.section_number }} 章  {{ section.section_name }}
+                                </div>
+                            </div>
+                        </h2>
+                    </div>
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <p class="lead">
+                                    章节信息：
+                                <br>
+                                    {{ section.info }}
+                            </p>
+                            <div class="row" style="margin-left: 1cm">
+                                <a class="btn btn-primary col-3" href="/teacherClass/{{ class_id }}/section/create">编辑章节信息</a>
+                            </div>
+                            <p>
+                                {% ifnotequal 0 flen %}
+                                <div>
+                                    附件：
+                                </div>
+                                {% for file in file_lists %}
+                                <div>
+                                    <a href="{% static file.url %}" download="{{ file.name }}">{{ file.name }}</a>
+                                </div>
+                                {% endfor %}
+                                {% endifnotequal %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="card">
+                    <form enctype="multipart/form-data" action="/teacherClass/{{class_id}}/section/detail/{{ section.number }}/uploadFile/" method="post">
+                        <div class="card-header" id="headingTwo">
+                            <h2 class="mb-0">
+                                <div class="row">
+                                    <div style="margin-left: 2%">
+                                        上传课程资料
+                                    </div>
+                                </div>
+                            </h2>
+                        </div>
+                        {% csrf_token %}
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+                            <div class="card-body">
+                                <input type="file" name="file" id="avatar_file" />
+                            </div>
+                            <div style="margin-left: 0.5cm">
+                                <input type="submit" value="upload">
+                            </div>
+                            <br>
+                            <br>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

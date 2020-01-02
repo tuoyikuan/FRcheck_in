@@ -105,7 +105,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-LOGIN_REDIRECT_URL = '/studentMain'
+LOGIN_REDIRECT_URL = '/teacherMain'
 LOGOUT_REDIRECT_URL = '/accounts/login'
 
 # Internationalization
@@ -113,14 +113,18 @@ LOGOUT_REDIRECT_URL = '/accounts/login'
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
+TIME_ZONE = 'Asia/Shanghai'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/

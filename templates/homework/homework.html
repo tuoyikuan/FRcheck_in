@@ -1,0 +1,108 @@
+{% extends "commonTeacher.html" %}
+{% block kk %}
+    <!-- ============================================================== -->
+    <!-- pageheader -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">课程作业 </h2>
+                <p class="pageheader-text">老师和助教发布的作业列表</p>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Tables</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">General Tables</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end pageheader -->
+    <!-- ============================================================== -->
+
+
+    <div class="row">
+        <div class="tab-regular col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <ul class="nav nav-tabs nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/section/">章节</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/homework/">通知</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/teacherClass/{{ class_id }}/homework/">作业</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/group/" role="tab">小组</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/discuss/" role="tab">论坛</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent7">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="card">
+                        <h5 class="card-header">作业项目列表</h5>
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th scope="col" style="width:20%">#</th>
+                                    <th scope="col" style="width:40%">标题</th>
+                                    <th scope="col" style="width:20%">发布日期</th>
+                                    <th scope="col" style="width:20%">截至日期</th>
+                                    <th scope="col" style="width:20%">发布人</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% if act_list|length >= 1 %}
+                                    {% for e in act_list %}
+                                        <tr class="clickable-row" data-n1="{{ e.act_id }}">
+                                            <th scope="row">{{forloop.counter}}</th>
+                                            <td>{{e.title}}</td>
+                                            <td>{{e.create_date}}</td>
+                                            <td>{{e.due_date}}</td>
+                                            <td>{{e.author}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr class="clickable-row" data-no="0">
+                                        <th scope="row"></th>
+                                        <td>暂无作业</td>
+                                        <td>{{e.create_date}}</td>
+                                        <td>{{e.due_date}}</td>
+                                        <td>{{e.author}}</td>
+                                    </tr>
+                                {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-9"></div>
+                    <a class="btn btn-primary col-3" href="/teacherClass/{{ class_id }}/homework/create">发布作业</a>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end hoverable table -->
+        <!-- ============================================================== -->
+    </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".clickable-row").click(function() {
+                if($(this).data("n1")!=0)
+                    window.location = "/teacherClass/{{ class_id }}/homework/check/"+$(this).data("n1");
+            });
+        });
+    </script>
+{% endblock %}
