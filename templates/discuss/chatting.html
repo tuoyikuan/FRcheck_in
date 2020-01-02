@@ -20,86 +20,107 @@
             </div>
         </div>
     </div>
-    <div class="content-container">
-    <div class="chat-module">
-        <div class="chat-module-top">
-            <div class="chat-module-body">
-                <div class="media chat-item">
-                    <img alt="Fallon" src="{% static 'assets/images/avatar-3.jpg' %}" class="rounded-circle user-avatar-lg">
-                    <div class="media-body">
-                        <div class="chat-item-title">
-                            <span class="chat-item-author">{{ post_list.name }}</span>
-                            <span>{{  post_list.time_str  }}</span>
-                        </div>
-                        <div>
-                            <div class="chat-item-body">
-                                <p>Title:{{ post_list.title }}</p>
-                            </div>
-                            <div class="chat-item-body">
-                                <p>Content:{{  post_list.content }}</p>
-                                <div class="row">
-                                <div class="col-sm-11"></div>
-                                <div class="col-sm-1">
-                                <p class="text-right">
-                                    <button class="btn btn-xs btn-primary btn-block" onclick="clcl();" id="newq">Reply</button>
-                                </p>
+    <div class="row">
+        <div class="tab-regular col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <ul class="nav nav-tabs nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/section/">章节</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/notification/">通知</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/homework/">作业</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/group/" role="tab">小组</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/teacherClass/{{ class_id }}/discuss/" role="tab">论坛</a>
+                </li>
+            </ul>
+            <div class="content-container">
+                <div class="chat-module">
+                    <div class="chat-module-top">
+                        <div class="chat-module-body">
+                            <div class="media chat-item">
+                                <img alt="Fallon" src="{% static 'assets/images/avatar-3.jpg' %}" class="rounded-circle user-avatar-lg">
+                                <div class="media-body">
+                                    <div class="chat-item-title">
+                                        <span class="chat-item-author">{{ post_list.name }}</span>
+                                        <span>{{  post_list.time_str  }}</span>
+                                    </div>
+                                    <div>
+                                        <div class="chat-item-body">
+                                            <p>Title:{{ post_list.title }}</p>
+                                        </div>
+                                        <div class="chat-item-body">
+                                            <p>Content:{{  post_list.content }}</p>
+                                            <div class="row">
+                                                <div class="col-sm-11"></div>
+                                                <div class="col-sm-1">
+                                                    <p class="text-right">
+                                                        <button class="btn btn-xs btn-primary btn-block" onclick="clcl();" id="newq">Reply</button>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <h2 class="pageheader-title" id="newq_title" style="display: none">
+                                            <form class="chat-form" id="newq_form" style="display: none" action="/teacherClass/{{ post_list.class_id }}/discuss/chatting/{{ post_list.id }}/create_post/"  method="post">
+                                                {% csrf_token %}
+                                                <div class="form-group">
+                                                    <label for="content">Content</label>
+                                                    <textarea class="form-control" id="content" placeholder="Type message" rows="1" name="msg_content"></textarea>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-6"></div>
+                                                    <div class="col-sm-6">
+                                                        <p class="text-right">
+                                                            <button type="submit" class="btn btn-link">
+                                                                <i class="fas fa-arrow-circle-up"></i>
+                                                            </button>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </h2>
+                                    </div>
                                 </div>
                             </div>
-                            </div>
 
-                            <h2 class="pageheader-title" id="newq_title" style="display: none">
-                                <form class="chat-form" id="newq_form" style="display: none" action="/teacherClass/{{ post_list.class_id }}/discuss/chatting/{{ post_list.id }}/create_post/"  method="post">
-                                    {% csrf_token %}
-                                    <div class="form-group">
-                                        <label for="content">Content</label>
-                                        <textarea class="form-control" id="content" placeholder="Type message" rows="1" name="msg_content"></textarea>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-6"></div>
-                                        <div class="col-sm-6">
-                                        <p class="text-right">
-                                            <button type="submit" class="btn btn-link">
-                                                <i class="fas fa-arrow-circle-up"></i>
-                                            </button>
-                                        </p>
+                            {%  for e in reply_list %}
+                                <div class="media chat-item">
+                                    <div class="media-body">
+                                        <div class="chat-item-title">
+                                            <span class="chat-item-author">{{ e.name }} : {{ e.content }}</span>
+                                            <span>{{ e.time_str }}</span>
                                         </div>
+
+                                        <p class="text-right">
+                                            <a href="/teacherClass/{{ class_id }}/discuss/chatting/{{ e.id }}/">
+                                                <button class="btn btn-link">
+                                                    <i class="fas fa-paper-plane"></i>
+                                                </button>
+                                            </a>
+
+                                            {% if e.name == current_user or is_teacher %}
+                                                <a href="/teacherClass/{{ post_list.class_id }}/discuss/chatting/{{ post_list.id }}/delete_post/{{ e.id }}/">
+                                                    <button class="btn btn-link">
+                                                        <i class="fas fa-window-close"></i>
+                                                    </button>
+                                                </a>
+                                            {% endif %}
+                                        </p>
                                     </div>
-                                </form>
-                            </h2>
+                                </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
-
-                {%  for e in reply_list %}
-                    <div class="media chat-item">
-                        <div class="media-body">
-                            <div class="chat-item-title">
-                                <span class="chat-item-author">{{ e.name }} : {{ e.content }}</span>
-                                <span>{{ e.time_str }}</span>
-                            </div>
-
-                            <p class="text-right">
-                                <a href="/teacherClass/{{ class_id }}/discuss/chatting/{{ e.id }}/">
-                                    <button class="btn btn-link">
-                                        <i class="fas fa-paper-plane"></i>
-                                    </button>
-                                </a>
-
-                                {% if e.name == current_user or is_teacher %}
-                                    <a href="/teacherClass/{{ post_list.class_id }}/discuss/chatting/{{ post_list.id }}/delete_post/{{ e.id }}/">
-                                        <button class="btn btn-link">
-                                            <i class="fas fa-window-close"></i>
-                                        </button>
-                                    </a>
-                                {% endif %}
-                            </p>
-                        </div>
-                    </div>
-                {% endfor %}
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
 
 {% block script %}

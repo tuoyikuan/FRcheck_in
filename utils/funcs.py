@@ -16,7 +16,7 @@ def is_student_of(user_id, class_id):
         cl = Class.objects.get(id=class_id)
         return Student.objects.get(id__id=user_id) in cl.students.all()
     except Exception as e:
-        return False;
+        return False
 
 
 def is_teacher_of(user_id, class_id):
@@ -24,7 +24,7 @@ def is_teacher_of(user_id, class_id):
         cl = Class.objects.get(id=class_id)
         return Teacher.objects.get(id__id=user_id) in cl.teachers.all()
     except Exception as e:
-        return False;
+        return False
 
 
 def is_ta_of(user_id, class_id):
@@ -32,7 +32,7 @@ def is_ta_of(user_id, class_id):
         cl = Class.objects.get(id=class_id)
         return TA.objects.get(id__id=user_id) in cl.tas.all()
     except Exception as e:
-        return False;
+        return False
 
 
 def is_leader_of(user_id, group_id):
@@ -40,5 +40,12 @@ def is_leader_of(user_id, group_id):
         gr = Group.objects.get(id=group_id)
         return gr.leader.id.id == user_id
     except Exception as e:
-        return False;
+        return False
+
+def is_teacher(user_id):
+    try:
+        Teacher.objects.get(id__id=user_id)
+        return True
+    except Exception as e:
+        return False
 

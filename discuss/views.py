@@ -93,6 +93,7 @@ def chatting(request, class_id, e_id):
         'current_user': request.user.username,
         'reply_list': templist,
         'is_teacher': is_teacher_of(request.user.id, class_id),
+        'class_id': class_id
     })
 
 

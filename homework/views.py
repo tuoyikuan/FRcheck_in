@@ -252,6 +252,7 @@ def show_problem(request, class_id, act_id, problem_id):
             "author": temp.author,
             "class_id": class_id,
             "act_id": act_id,
+            "isteacher" : is_teacher_of(request.user.id, class_id),
         })
     elif h.type == "Blank":
         type = "填空题"
@@ -268,6 +269,7 @@ def show_problem(request, class_id, act_id, problem_id):
             "author": temp.author,
             "class_id": class_id,
             "act_id": act_id,
+            "isteacher": is_teacher_of(request.user.id, class_id),
         })
     else:
         question = h.question
@@ -281,6 +283,7 @@ def show_problem(request, class_id, act_id, problem_id):
             "author": temp.author,
             "class_id": class_id,
             "act_id": act_id,
+            "isteacher": is_teacher_of(request.user.id, class_id),
         })
 
 

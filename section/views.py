@@ -20,7 +20,13 @@ def section(request, class_id):
             'number': section.number,
             'section_number': numbers[section.number]
         })
-    return render(request, "teacher/teacherClassSection.html", {"class_id": class_id, "section_lists": tmpSection, "class_name": class_name, "len": length})
+    return render(request, "teacher/teacherClassSection.html", {
+        "class_id": class_id,
+        "section_lists": tmpSection,
+        "class_name": class_name,
+        "len": length,
+        "isteacher": is_teacher_of(request.user.id, class_id),
+    })
 
 
 @login_required
@@ -44,9 +50,22 @@ def show_sec(request, class_id, sec_number):
                 "name": file.name
             })
             print(file.url)
-        return render(request, "teacher/show_sec.html", {"class_id": class_id, "section": section_detail, "flen": flen, "class_name": class_name, "file_lists": tmp_file_lists})
+        return render(request, "teacher/show_sec.html", {
+            "class_id": class_id,
+            "section": section_detail,
+            "flen": flen,
+            "class_name": class_name,
+            "file_lists": tmp_file_lists,
+            "isteacher": is_teacher_of(request.user.id, class_id),
+        })
     else:
-        return render(request, "teacher/show_sec.html", {"class_id": class_id, "section": section_detail, "flen": flen, "class_name": class_name})
+        return render(request, "teacher/show_sec.html", {
+            "class_id": class_id,
+            "section": section_detail,
+            "flen": flen,
+            "class_name": class_name,
+            "isteacher": is_teacher_of(request.user.id, class_id),
+        })
 
 
 @login_required
@@ -60,17 +79,10 @@ def create_new_sec(request, class_id):
         if len(Section.objects.filter(class_id=cl, number=number).all()) == 0:
             sec = Section(class_id=cl, name=name, number=number, info=info)
             sec.save()
-<<<<<<< HEAD
             messages.success(request, "成功创建新章节")
         else:
             messages.success(request, "创建新章节失败，章节已存在")
     return redirect("/teacherClass/%d/section" %class_id)
-=======
-            return redirect("/studentClass/%d/section" % class_id)
-        else:
-            return redirect("/studentClass/%d/section" % class_id)
-
->>>>>>> b4df6faf1d2105a7ffbf43715b14bebbbc5b5706
 
 @login_required
 def create(request, class_id):

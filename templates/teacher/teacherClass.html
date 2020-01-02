@@ -46,6 +46,7 @@
 
     <br>
     <br>
+    {% if isteacher %}
     <form  action="/teacherClass/createClass/" method="post">
         <div class="row" style="text-align: center">
             <div class="input-group input-group-round" style="width: 80%; margin-right: 5%">
@@ -59,16 +60,17 @@
             <input type="submit" class="btn btn-rounded btn-primary" style="width: 15%" value="创建课程">
         </div>
         {% csrf_token %}
-        {% if signal == 1 %}
+        {% if signal1 == 1 %}
             <div class="row">
                 <p style="color: red">课程创建失败，已存在该课程</p>
             </div>
-            {% elif signal == 2 %}
+            {% elif signal1 == 2 %}
             <div class="row">
                 <p style="color: green">已创建课程</p>
             </div>
         {% endif %}
     </form>
+    {% endif %}
 
     <br>
     <br>
@@ -88,7 +90,7 @@
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                     <a href = "/teacherClass/{{tmp.class_id}}/section/">
-                        <div class="card">
+                        <div class="card" style="background-color: {{ tmp.color }}" >
                             <h5 class="card-header">{{ tmp.class_name }}</h5>
                             <div class="card-body">
                                 <div class="ct-chart-line ct-golden-section">{{ tmp.class_info }}</div>
@@ -99,7 +101,7 @@
                 {% else %}
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                     <a href = "/teacherClass/{{tmp.class_id}}/section/">
-                        <div class="card">
+                        <div class="card" style="background-color: {{ tmp.color }}" >
                             <h5 class="card-header">{{ tmp.class_name }}</h5>
                             <div class="card-body">
                                 <div class="ct-chart-line ct-golden-section">{{ tmp.class_info }}</div>

@@ -32,7 +32,7 @@
                     <a class="nav-link" href="/teacherClass/{{ class_id }}/section/">章节</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/teacherClass/{{ class_id }}/homework/">通知</a>
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/notification/">通知</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="/teacherClass/{{ class_id }}/homework/">作业</a>
@@ -84,10 +84,12 @@
                         </div>
                     </div>
                 </div>
+                {% if isteacher %}
                 <div class="row">
                     <div class="col-9"></div>
                     <a class="btn btn-primary col-3" href="/teacherClass/{{ class_id }}/homework/create">发布作业</a>
                 </div>
+                {% endif %}
             </div>
         </div>
         <!-- ============================================================== -->

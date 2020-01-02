@@ -36,7 +36,7 @@ def register_post(request):
     u.set_password(password)
     u.save()
 
-    Teacher.objects.create(id=u, teacher_id=number, dept=dept)
+    # Teacher.objects.create(id=u, teacher_id=number, dept=dept)
     Student.objects.create(id=u, student_id=number, dept=dept)
     TA.objects.create(id=u, ta_id=number, dept=dept, authority="000")
     return redirect('/accounts/congratulations')

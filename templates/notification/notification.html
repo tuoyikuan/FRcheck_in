@@ -81,10 +81,12 @@
                         </div>
                     </div>
                 </div>
+                {% if isteacher %}
                 <div class="row">
                     <div class="col-9"></div>
                     <a class="btn btn-primary col-3" href="/teacherClass/{{ class_id }}/notification/create">发布通知</a>
                 </div>
+                {% endif %}
             </div>
         </div>
         <!-- ============================================================== -->

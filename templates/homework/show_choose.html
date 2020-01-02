@@ -47,7 +47,9 @@
                             <div class="col-sm-6"> </div>
                             <div class="col-sm-6">
                                 <p class="text-right">
+                                    {% if not isteacher %}
                                     <button type="submit" class="btn btn-space btn-primary">提交</button>
+                                    {% endif %}
                                     <a class="btn btn-space btn-secondary" href="/teacherClass/{{ class_id }}/homework/check/{{ act_id }}/">取消</a>
                                     <a class="btn btn-space btn-secondary" href="/teacherClass/{{ class_id }}/homework/{{ act_id }}/problem/{{ problem_id }}/student_submit/">查看学生提交</a>
                                 </p>
