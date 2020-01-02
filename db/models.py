@@ -158,6 +158,10 @@ class Post(models.Model):
 
 class Group(models.Model):
     class_id = models.ForeignKey(Class, on_delete=models.CASCADE)
+    leader = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='leader')
+    name = models.CharField(max_length=100)
+    ver_number = models.CharField(max_length=100)
+    locked = models.BooleanField()
     members = models.ManyToManyField(
         Student,
         through='GroupMembership',

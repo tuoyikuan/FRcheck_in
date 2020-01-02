@@ -1,0 +1,186 @@
+{% extends "common.html" %}
+{% block kk %}
+    <!-- ============================================================== -->
+    <!-- pageheader -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title"> 组队信息 </h2>
+                <p class="pageheader-text">该课程的学习小组</p>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Tables</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">General Tables</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end pageheader -->
+    <!-- ============================================================== -->
+
+
+    <div class="row">
+        <div class="tab-regular col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <ul class="nav nav-tabs nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link" href="/studentClass/{{ class_id }}/section/">章节</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/studentClass/{{ class_id }}/notification/">通知</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/studentClass/{{ class_id }}/homework/">作业</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/studentClass/{{ class_id }}/group/" role="tab">小组</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/studentClass/{{ class_id }}/discuss/" role="tab">论坛</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent7">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    {% if unlocked %}
+                    {% if not member_list|length >= 1 %}
+                    <form  action="/studentClass/{{ class_id }}/group/join/" method="post">
+                        {% csrf_token %}
+                        {% if signal == 1 %}
+                            <div class="row">
+                                <p style="color: red">小组不存在</p>
+                            </div>
+                        {% elif signal == 2 %}
+                            <div class="row">
+                                <p style="color: green">已加入小组</p>
+                            </div>
+                        {% elif signal == 3 %}
+                            <div class="row">
+                                <p style="color: red">小组被锁定</p>
+                            </div>
+                        {% endif %}
+                            <div class="row" style="text-align: center">
+                                <div class="input-group input-group-round" style="width: 80%; margin-right: 5%">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-search"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" name="ver_number" class="form-control filter-list-input" placeholder="小组邀请码" aria-label="">
+                                </div>
+                                <input type="submit" class="btn btn-rounded btn-primary" style="width: 15%" value="加入小组">
+                            </div>
+                    </form>
+                    {% endif %}
+                    <p></p>
+                    <div class="row">
+                        {% if member_list|length >= 1 %}
+                            <form action="/studentClass/{{ class_id }}/group/leave/" method="post" class="col-12">
+                                {% csrf_token %}
+                                {% if is_leader %}
+                                <button class="btn btn-danger btn-block" href="/studentClass/{{ class_id }}/group//" type="submit">解散小组</button>
+                                {% else %}
+                                    <button class="btn btn-secondary btn-block" href="/studentClass/{{ class_id }}/group//" type="submit">退出小组</button>
+                                {% endif %}
+
+                            </form>
+                        {% else %}
+                            <a class="btn btn-primary btn-block" href="/studentClass/{{ class_id }}/group/create/">创建小组</a>
+                        {% endif %}
+                    </div>
+                        {% else %}
+                        <div class="center-block">
+                            <a class="btn btn-light btn-block">分组已被老师锁定</a>
+                        </div>
+                    {% endif %}
+                    <div class="row">
+                    {% if is_leader %}
+                        <form action="/studentClass/{{ class_id }}/group/change_ver/" method="post" class="col-12 mt-5">
+                        {% csrf_token %}
+                        {% if signal == 1 %}
+                            <label>
+                            <span style="color: red">
+                            此邀请码已被使用
+                            </span>
+                            </label>
+                        {% endif %}
+                        <div class="row">
+                            <p class="col-6">当前邀请码为：{{ ver_number }}</p>
+                            <input class="form-control filter-list-input col-4" type="text" name="ver_number" placeholder="新邀请码">
+                            <button class="btn btn-primary col-2">更换邀请码</button>
+                        </div>
+                        </form>
+                    {% endif %}
+                    </div>
+                    <p></p>
+                    <div class="card">
+                        <h5 class="card-header">小组成员</h5>
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th scope="col" style="width:20%">#</th>
+                                    <th scope="col" style="width:40%">组员</th>
+                                    <th scope="col" style="width:20%">组名</th>
+                                    <th scope="col" style="width:20%">职务</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% if member_list|length >= 1 %}
+                                    {% for e in member_list %}
+                                        <tr>
+                                            <th scope="row">{{forloop.counter}}</th>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-8">
+                                                        {{e.username}}
+                                                    </div>
+                                                    {% if is_leader and not e.is_leader and unlocked %}
+                                                        <div class="col-4">
+                                                            <form action="/studentClass/{{ class_id }}/group/kick/{{ e.id }}/" method="post">
+                                                                {% csrf_token %}
+                                                                <button class="btn btn-danger btn-xs">踢出组员</button>
+                                                            </form>
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                            </td>
+                                            <td>{{e.group_name}}</td>
+                                            <td>
+                                                {% if e.is_leader == True %} 组长
+                                                {% else %} 组员
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <th scope="row"></th>
+                                        <td>暂无分组</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                {% if isteacher %}
+                    <div class="row">
+                        <div class="col-9"></div>
+                        <a class="btn btn-primary col-3" href="/studentClass/{{ class_id }}/notification/create">发布通知</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end hoverable table -->
+        <!-- ============================================================== -->
+    </div>
+    </div>
+{% endblock %}
