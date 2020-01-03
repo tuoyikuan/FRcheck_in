@@ -71,16 +71,15 @@ def chatting(request, class_id, e_id):
         return redirect('/teacherClass/denied')
     temp = Post.objects.filter(discuss=e_id)
     templist = []
-    tlist = []
     t = Discuss.objects.get(id=e_id)
-    tlist.append({
+    tlist = {
         'name': t.author.username,
         'time_str': t.create_time,
         'content': t.content,
         'title': t.title,
         'id': t.id,
         'class_id': class_id,
-    })
+    }
     for e in temp:
         templist.append({
             'name': e.author.username,
@@ -89,7 +88,7 @@ def chatting(request, class_id, e_id):
             'id': e.id,
         })
     return render(request, 'discuss/chatting.html', {
-        'post_list': tlist[0],
+        'post_list': tlist,
         'current_user': request.user.username,
         'reply_list': templist,
         'is_teacher': is_teacher_of(request.user.id, class_id),

@@ -29,42 +29,42 @@
         <div class="tab-regular col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <ul class="nav nav-tabs nav-fill">
                 <li class="nav-item">
-                    <a class="nav-link" href="/studentClass/{{ class_id }}/section/">章节</a>
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/section/">章节</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/studentClass/{{ class_id }}/notification/">通知</a>
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/notification/">通知</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/studentClass/{{ class_id }}/homework/">作业</a>
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/homework/">作业</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="/studentClass/{{ class_id }}/group/" role="tab">小组</a>
+                    <a class="nav-link active" href="/teacherClass/{{ class_id }}/group/" role="tab">小组</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/studentClass/{{ class_id }}/discuss/" role="tab">论坛</a>
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/discuss/" role="tab">论坛</a>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent7">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="row">
-                        <form action="/studentClass/{{ class_id }}/group/lockall/" method="post" class="col-12">
+                        <form action="/teacherClass/{{ class_id }}/group/lockall/" method="post" class="col-12">
                             {% csrf_token %}
                             <button class="btn btn-primary btn-block">锁定全部</button>
                         </form>
                     </div>
                     <div class="row">
-                        <form action="/studentClass/{{ class_id }}/group/unlockall/" method="post" class="col-12 mt-1">
+                        <form action="/teacherClass/{{ class_id }}/group/unlockall/" method="post" class="col-12 mt-1">
                             {% csrf_token %}
                             <button class="btn btn-brand btn-block">解锁全部</button>
                         </form>
                     </div>
                     <div class="row">
                         <form class="col-12 mt-1">
-                            <a class="btn btn-success btn-block" href="/studentClass/{{ class_id }}/group/nogroup/">查看未分组人员</a>
+                            <a class="btn btn-success btn-block" href="/teacherClass/{{ class_id }}/group/nogroup/">查看未分组人员</a>
                         </form>
                     </div>
                     <div class="row">
-                        <form action="/studentClass/{{ class_id }}/group/deleteall/" method="post" class="col-12 mt-1">
+                        <form action="/teacherClass/{{ class_id }}/group/deleteall/" method="post" class="col-12 mt-1">
                             {% csrf_token %}
                             <button class="btn btn-danger btn-block">解散全部小组 （危险）</button>
                         </form>
@@ -92,15 +92,15 @@
                                             <td>
                                                 <div class="row">
                                                     {% if e.locked %}
-                                                        <form class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12" action="/studentClass/{{ class_id }}/group/unlock/{{ e.gid }}/">
+                                                        <form class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12" action="/teacherClass/{{ class_id }}/group/unlock/{{ e.gid }}/">
                                                             <button class="btn btn-danger">解锁</button>
                                                         </form>
                                                     {% else %}
-                                                        <form class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12" action="/studentClass/{{ class_id }}/group/lock/{{ e.gid }}/">
+                                                        <form class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12" action="/teacherClass/{{ class_id }}/group/lock/{{ e.gid }}/">
                                                             <button class="btn btn-success">锁定</button>
                                                         </form>
                                                     {% endif %}
-                                                    <form class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12" action="/studentClass/{{ class_id }}/group/delete/{{ e.gid }}/">
+                                                    <form class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12" action="/teacherClass/{{ class_id }}/group/delete/{{ e.gid }}/">
                                                         <button class="btn btn-warning">强制解散</button>
                                                     </form>
                                                 </div>
@@ -123,7 +123,7 @@
                 {% if isteacher %}
                     <div class="row">
                         <div class="col-9"></div>
-                        <a class="btn btn-primary col-3" href="/studentClass/{{ class_id }}/notification/create">发布通知</a>
+                        <a class="btn btn-primary col-3" href="/teacherClass/{{ class_id }}/notification/create">发布通知</a>
                     </div>
                 {% endif %}
             </div>
@@ -139,7 +139,7 @@
         $(document).ready(function() {
             $(".clickable-row").click(function() {
                 if($(this).data("no")!=0)
-                    window.location = "/studentClass/{{ class_id }}/group/show/"+$(this).data("no");
+                    window.location = "/teacherClass/{{ class_id }}/group/show/"+$(this).data("no");
             });
         });
     </script>

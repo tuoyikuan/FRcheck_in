@@ -53,7 +53,7 @@ def show_noti(request, class_id, noti_id):
 def delete_post(request, class_id, noti_id):
     temp = Activity.objects.get(id=noti_id)
     class_id1 = temp.class_id
-    if not in_class(request.user.id, class_id1):
+    if not in_class(request.user.id, class_id1.id):
         return redirect('/teacherClass/denied')
     temp.delete()
     return redirect('/teacherClass/%d/notification/' % class_id1.id)

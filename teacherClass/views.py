@@ -31,14 +31,14 @@ def allClass(request):
     for cl in class_list_s:
         tmplist.append({
             'class_id': cl.class_id.id,
-            'class_name': cl.class_id.class_name,
+            'class_name': cl.class_id.class_name + '（课程代码：' + str(cl.class_id.id) + '）',
             'class_info': (cl.class_id.info if len(cl.class_id.info) else "暂无简介")[:100],
             'color': '#ffffff',
         })
     for cl in class_list_t:
         tmplist.append({
             'class_id': cl.class_id.id,
-            'class_name': cl.class_id.class_name+' （教师界面）',
+            'class_name': cl.class_id.class_name+' （教师界面, 课程代码：' + str(cl.class_id.id) + '）',
             'class_info': (cl.class_id.info if len(cl.class_id.info) else "暂无简介")[:100],
             'color': '#e0ffff',
         })
@@ -95,7 +95,6 @@ def createClass(request):
             return redirect("/teacherClass/allClass")
         if len(cl) == 0:
             newClass = Class(class_name=class_name, info=class_info)
-            newClass.save()
             newClass.teachers.add(t)
             newClass.save()
             signal1 = 2
