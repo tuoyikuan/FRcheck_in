@@ -69,6 +69,13 @@ class Section(models.Model):
     )
 
 
+class Check(models.Model):
+    class_id = models.ForeignKey(Class, on_delete=models.CASCADE)
+    number = models.IntegerField()
+    create_time = models.DateField(auto_now=True)
+    check_string = models.CharField(max_length=250)
+
+
 class SectionHasFile(models.Model):
     section = models.ForeignKey(Section, on_delete=models.CASCADE)
     file = models.ForeignKey(File, on_delete=models.CASCADE)

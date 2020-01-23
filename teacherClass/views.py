@@ -21,11 +21,13 @@ def allClass(request):
     try:
         t = Teacher.objects.get(id__username=usr)
         class_list_t = TeachMembership.objects.filter(teacher=t)
-    except: pass
+    except:
+        pass
     try:
         s = Student.objects.get(id__username=usr)
         class_list_s = StudentMembership.objects.filter(student=s)
-    except: pass
+    except:
+        pass
     length = len(class_list_s)+len(class_list_t)
     tmplist = []
     for cl in class_list_s:
@@ -95,6 +97,7 @@ def createClass(request):
             return redirect("/teacherClass/allClass")
         if len(cl) == 0:
             newClass = Class(class_name=class_name, info=class_info)
+            newClass.save()
             newClass.teachers.add(t)
             newClass.save()
             signal1 = 2

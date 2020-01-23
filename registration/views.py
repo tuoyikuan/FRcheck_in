@@ -30,15 +30,16 @@ def register_post(request):
             'number': number,
             'dept': dept,
         })
-
     u = User(username=username, email=email, info='', first_name=name,
              last_name='')
     u.set_password(password)
     u.save()
 
-    # Teacher.objects.create(id=u, teacher_id=number, dept=dept)
-    Student.objects.create(id=u, student_id=number, dept=dept)
-    TA.objects.create(id=u, ta_id=number, dept=dept, authority="000")
+    if number < 10000 & len(Teacher.objects.filter(teacher_id=number)) == 0:
+        Teacher.objects.create(id=u, teacher_id=number, dept=dept)
+    elif len(Student.objects.filter(student_id=number)) == 0:
+        Student.objects.create(id=u, student_id=number, dept=dept)
+    # TA.objects.create(id=u, ta_id=number, dept=dept, authority="000")
     return redirect('/accounts/congratulations')
 
 
