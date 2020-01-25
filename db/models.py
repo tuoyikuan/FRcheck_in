@@ -22,6 +22,7 @@ class Student(models.Model):
     id = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
     student_id = models.CharField(max_length=50)
     dept = models.CharField(max_length=50)
+    ref_photo_url = models.CharField(max_length=200)
 
 
 class TA(models.Model):
@@ -53,7 +54,7 @@ class Class(models.Model):
     students = models.ManyToManyField(
         Student,
         through='StudentMembership',
-        through_fields=('class_id', 'student')
+        through_fields=('class_id', 'student'),
     )
 
 
@@ -71,7 +72,7 @@ class Section(models.Model):
 
 class Check(models.Model):
     class_id = models.ForeignKey(Class, on_delete=models.CASCADE)
-    number = models.IntegerField()
+    batch_number = models.IntegerField()
     create_time = models.DateField(auto_now=True)
     check_string = models.CharField(max_length=250)
 
@@ -198,3 +199,4 @@ class StudentMembership(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     class_id = models.ForeignKey(Class, on_delete=models.CASCADE)
     create_time = models.DateTimeField(auto_now=True)
+    class_number = models.IntegerField()

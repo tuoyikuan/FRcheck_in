@@ -104,7 +104,7 @@ def uploadFile(request, class_id, sec_number):
             destination.write(chunk)
         destination.close()
         url = os.path.join("file", str(class_id),str(sec_number), file.name)
-        print(url)
+        # print(url)
         newFile = File(url=url, name=file.name, uploader=rusr)
         newFile.save()
         Asection = Section.objects.get(class_id=class_id, number=sec_number)

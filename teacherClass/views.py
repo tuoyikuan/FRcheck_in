@@ -72,8 +72,13 @@ def addClass(request):
             signal = 1
             return redirect("/teacherClass/allClass")
         if len(cl) != 0:
-            cl[0].students.add(t)
-            cl[0].save()
+            class_numbers = StudentMembership.objects.filter(class_id__id=class_id).all()
+            if len(class_numbers) == 0:
+                class_number = 1
+            else:
+                class_number = class_numbers[-1].class_number + 1
+            new_relation = StudentMembership(class_id=cl, student=t, class_number=class_number)
+            new_relation.save()
             signal = 2
         else:
             signal = 1

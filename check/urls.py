@@ -3,6 +3,7 @@ from check.views import *
 
 urlpatterns = [
     path("", check),
+    path("create/", create),
     path("teacher/<int:check_id>", teacher_check),
-    path("student/<int:check_id>", student_check),
+    path("teacher/<int:check_id>/update", update_check),
 ]

@@ -17,7 +17,7 @@ def register_post(request):
     number = request.POST.get('number')
     dept = request.POST.get('dept')
 
-    if len(User.objects.filter(username=username)):
+    if len(User.objects.filter(username=username)) >= 1:
         return render(request, 'registration/sign-up.html', {
             'errors': 'Username has been used.'
         })

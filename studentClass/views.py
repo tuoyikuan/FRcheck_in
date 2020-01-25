@@ -38,7 +38,7 @@ def allClass(request):
 def addClass(request):
     global signal
     if request.method == 'POST':
-        class_id=request.POST.get('class_id')
+        class_id = request.POST.get('class_id')
         usr = request.user.username
         s = Student.objects.get(id__username=usr)
         try:
@@ -47,8 +47,13 @@ def addClass(request):
             signal = 1
             return redirect("/studentClass")
         if len(cl) != 0:
-            cl[0].students.add(s)
-            cl[0].save()
+            class_numbers = StudentMembership.objects.filter(class_id__id=class_id).all()
+            if len(class_numbers) == 0:
+                class_number = 1
+            else:
+                class_number = class_numbers[-1].class_number + 1
+            new_relation = StudentMembership(class_id=cl, student=s, class_number=class_number)
+            new_relation.save()
             signal = 2
         else:
             signal = 1

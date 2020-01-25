@@ -19,6 +19,7 @@ from . import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # path('check/', include("check.urls")),
     path('accounts/', include('registration.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('studentMain/', include("studentMain.urls")),
