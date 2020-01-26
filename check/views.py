@@ -1,3 +1,4 @@
+import os
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from db.models import *
@@ -5,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils import  timezone
 from utils.funcs import *
 from django.contrib import messages
-import os
+from face_recognition import face_locations, face_encodings, face_distance                    , load_image_file
 
 
 @login_required
@@ -72,12 +73,35 @@ def teacher_check(request, class_id, check_id):
 @login_required
 def update_check(request, class_id, check_id):
     """需要根据已有的表单信息以及新的图片，把位串与一下"""
+    # 读取上传的照片 临时存储在static/file/tmp目录下
+    file = request.FILES.get("file")
+    if not file:
+        return HttpResponse('no file for upload!')
+    path = os.path.join("static/file/tmp", file.name)
+    if not os.path.exists(path):
+        os.makedirs(path)
+    destination = open(path, 'wb')
+    for chunk in file.chunks():
+        destination.write(chunk)
+    destination.close()
+
+    # 调用模型识别提取照片中的全部人脸特征码
+    image = load_image_file(path)
+    face_positions = face_locations(image, 2)
+    encodings = face_encodings(image, face_positions)
+
     new_check_string = '0' # 调用人脸识别
     cl = Class.objects.get(id=class_id)
     students = cl.students.all().order_by('studentmembership__class_number')
     for student in students:
-        pass
-    check_string = Check.objects.get(class_id=cl, batch_number=check_id)
+        ref_encoding = student.face_encoding
+        if face_distance(encodings, ref_encoding).any():
+            new_check_string += '1'
+        else:
+            new_check_string += '0'
+    check = Check.objects.get(class_id=cl, batch_number=check_id)
+    check.check_string = new_check_string
+    check.save()
     return redirect("/teacherClass/%d/check/teacher/%d" % (class_id, check_id))
 
 @login_required
