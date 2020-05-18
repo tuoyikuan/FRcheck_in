@@ -199,4 +199,4 @@ class StudentMembership(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     class_id = models.ForeignKey(Class, on_delete=models.CASCADE)
     create_time = models.DateTimeField(auto_now=True)
-    class_number = models.IntegerField()
+    class_rank = models.IntegerField()
