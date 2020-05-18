@@ -57,6 +57,7 @@ def show_teacher_group(request, class_id):
     return render(request, 'group/group_teacher.html', {
         'group_list': temp_list,
         'class_id': class_id,
+        'class_name': get_class_name(class_id)
     })
 
 

@@ -48,17 +48,17 @@
             </ul>
             <div class="tab-content">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <button class="btn btn-primary btn-block" onclick="clcl();" id="newq">新建问题</button>
+                    <button class="btn btn-primary btn-block" onclick="clcl();" id="newq">创建新话题</button>
                     <p></p>
-                    <h2 class="pageheader-title" id="newq_title" style="display: none">提问</h2>
+                    <h2 class="pageheader-title" id="newq_title" style="display: none">话题</h2>
                     <form class="chat-form" id="newq_form" style="display: none" action="/teacherClass/{{ class_id }}/discuss/create_msg/"  method="post">
                         {% csrf_token %}
                         <div class="form-group">
-                            <label for="title" class="col-form-label">Title</label>
+                            <label for="title" class="col-form-label">主题</label>
                             <input id="title" type="text" class="form-control" placeholder="Type title" name="msg_title">
                         </div>
                         <div class="form-group">
-                            <label for="content">Content</label>
+                            <label for="content">内容</label>
                             <textarea class="form-control" style="height:100px" id="content" placeholder="Type message" rows="1" name="msg_content"></textarea>
                         </div>
                         <div class="row">
@@ -66,7 +66,7 @@
                             <div class="col-sm-6">
                                 <p class="text-right">
                                     <button type="submit" class="btn btn-primary">
-                                        提问
+                                        发布
                                     </button>
                                 </p>
                             </div>
@@ -117,13 +117,13 @@
 {% block script %}
     <script type="text/javascript">
         lclc=(function() {
-            document.getElementById("newq").textContent="提问";
+            document.getElementById("newq").textContent="创建新话题";
             document.getElementById("newq").onclick=clcl;
             document.getElementById("newq_title").style.display='none';
             document.getElementById("newq_form").style.display='none';
         });
         clcl=(function() {
-            document.getElementById("newq").textContent="收起表格";
+            document.getElementById("newq").textContent="返回当前话题列表";
             document.getElementById("newq").onclick=lclc;
             document.getElementById("newq_title").style.display='block';
             document.getElementById("newq_form").style.display='block';
