@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils import  timezone
 from utils.funcs import *
 from django.contrib import messages
+from pickle import load
 from face_recognition import face_locations, face_encodings, face_distance, load_image_file
 
 
@@ -105,9 +106,9 @@ def update_check(request, class_id, check_id):
 
     new_check_string = '0' # 调用人脸识别
     cl = Class.objects.get(id=class_id)
-    students = cl.students.objects.order_by('studentmembership__class_rank').all()
+    students = cl.students.order_by('studentmembership__class_rank').all()
     for student in students:
-        ref_encoding = student.face_encoding
+        ref_encoding = load(os.path.splitext(student.ref_photo_url)[0] + '.pkl')
         if face_distance(encodings, ref_encoding).any():
             new_check_string += '1'
         else:
@@ -145,7 +146,7 @@ def create_new(request, class_id):
     cl = Class.objects.get(id=class_id)
     students = cl.students.order_by('studentmembership__class_rank').all()
     for student in students:
-        ref_encoding = student.face_encoding
+        ref_encoding = load(os.path.splitext(student.ref_photo_url)[0] + '.pkl')
         if face_distance(encodings, ref_encoding).any():
             new_check_string += '1'
         else:

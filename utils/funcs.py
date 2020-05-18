@@ -1,4 +1,7 @@
 from db.models import *
+from os.path import splitext
+from pickle import dump
+from face_recognition import face_encodings, load_image_file
 
 
 def in_class(user_id, class_id):
@@ -55,4 +58,11 @@ def get_class_name(class_id):
         return c.class_name
     except Exception as e:
         return None
+
+def generate_face_encoding(student_id):
+    student = Student.objects.get(student_id=student_id)
+    path = student.ref_photo_url
+    ref_photo = load_image_file(path)
+    return dump(face_encodings(ref_photo), splitext(path)[0] + '.pkl')
+
 
