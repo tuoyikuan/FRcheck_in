@@ -48,4 +48,11 @@ def is_teacher(user_id):
         return True
     except Exception as e:
         return False
+    
+def get_class_name(class_id):
+    try:
+        c = Class.objects.get(id=class_id)
+        return c.class_name
+    except Exception as e:
+        return None
 

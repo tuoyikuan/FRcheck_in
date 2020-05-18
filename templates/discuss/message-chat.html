@@ -1,4 +1,4 @@
-{% extends 'common.html' %}
+{% extends 'commonTeacher.html' %}
 {% block kk %}
     {% load static %}
     <!-- ============================================================== -->
@@ -7,14 +7,14 @@
     <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="page-header">
-                <h2 class="pageheader-title">课程论坛 </h2>
+                <h2 class="pageheader-title">课程论坛</h2>
                 <p class="pageheader-text">关于该课程的问答空间</p>
                 <div class="page-breadcrumb">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Tables</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">General Tables</li>
+                            <li class="breadcrumb-item"><a href="/teacherClass/allClass/" class="breadcrumb-link">我的课程</a></li>
+                            <li class="breadcrumb-item"><a href="/teacherClass/{{ class_id }}/section/" class="breadcrumb-link">{{class_name}}</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">课程论坛</li>
                         </ol>
                     </nav>
                 </div>
@@ -32,6 +32,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/teacherClass/{{ class_id }}/notification/">通知</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/check/">签到</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/teacherClass/{{ class_id }}/homework/">作业</a>

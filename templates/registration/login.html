@@ -6,7 +6,7 @@
     {% load static %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Login</title>
+    <title>Page - 用户登陆</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}">
     <link href="{% static 'assets/vendor/fonts/circular-std/style.css' %}" rel="stylesheet">
@@ -35,13 +35,18 @@
     <!-- ============================================================== -->
     <div class="splash-container">
         <div class="card ">
-            <div class="card-header text-center"><a href="{% static 'index.html' %}"><img class="logo-img" src="{% static 'assets/images/logo.png' %}" alt="logo"></a><span class="splash-description">Please enter your user information.</span></div>
+            <div class="card-header text-center"><a href="{% static 'index.html' %}"><img class="logo-img" src="{% static 'assets/images/logo.png' %}" alt="logo"></a><span class="splash-description">请输入您的用户信息.</span></div>
             <div class="card-body">
                 <form method="post">
                     {% csrf_token %}
                     {% if form.errors|length %}
                         <div class="form-group">
-                            <span class="splash-description" style="color: red">Wrong username or password.</span>
+                            <span class="splash-description" style="color: red">用户名或密码错误.</span>
+                        </div>
+                    {% endif %}
+                    {% if redirect %}
+                        <div class="form-group">
+                            <span class="splash-description" style="color: red">注册成功，请登陆.</span>
                         </div>
                     {% endif %}
                     <div class="form-group">
@@ -52,14 +57,15 @@
                         <input class="form-control form-control-lg" id="{{ form.password.id_for_label }}" name="{{ form.password.html_name }}"
                                type="password" placeholder="Password" autocomplete="off">
                     </div>
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">登 陆</button>
                 </form>
             </div>
             <div class="card-footer bg-white p-0  ">
                 <div class="card-footer-item card-footer-item-bordered">
-                    <a href="/accounts/register/" class="footer-link">Create An Account</a></div>
+                    <a href="/accounts/register/" class="footer-link">创建新用户</a>
+                </div>
                 <div class="card-footer-item card-footer-item-bordered">
-                    <a href="#" class="footer-link">Forgot Password</a>
+                    <a href="#" class="footer-link">忘记密码</a>
                 </div>
             </div>
         </div>

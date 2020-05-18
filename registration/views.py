@@ -35,7 +35,7 @@ def register_post(request):
     u.set_password(password)
     u.save()
 
-    if int(number) < 10000 & len(Teacher.objects.filter(teacher_id=number)) == 0:
+    if int(number) < 10000 and len(Teacher.objects.filter(teacher_id=number)) == 0:
         Teacher.objects.create(id=u, teacher_id=number, dept=dept)
     elif len(Student.objects.filter(student_id=number)) == 0:
         Student.objects.create(id=u, student_id=number, dept=dept)
@@ -48,4 +48,4 @@ def register(request):
 
 
 def congratulations(request):
-    return render(request, 'registration/good.html')
+    return render(request, 'registration/login.html', {'redirect': True})

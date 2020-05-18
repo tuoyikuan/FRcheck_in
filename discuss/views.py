@@ -32,6 +32,7 @@ def message_chat(request, class_id):
         'class_id': class_id,
         'current_user': request.user.username,
         'is_teacher': is_teacher_of(request.user.id, class_id),
+        'class_name': get_class_name(class_id)
     })
 
 

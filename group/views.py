@@ -38,6 +38,7 @@ def show_student_group(request, class_id):
         'class_id': class_id,
         'is_leader': is_leader,
         'ver_number': (group.ver_number) if len(tmplist) else '',
+        'class_name': get_class_name(class_id)
     })
 
 

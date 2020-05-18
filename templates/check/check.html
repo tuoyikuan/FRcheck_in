@@ -1,16 +1,30 @@
 {% extends "commonTeacher.html" %}
 {% block kk %}
     {% load static %}
-    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
-        <div class="section-block">
-            <h1 class="section-title">课程</h1>
-            <br>
-            <h2>{{ class_name }}</h2>
-        </div>
-        <br>
-        <br>
 
-        <div class="tab-regular">
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">课堂签到 </h2>
+                <p class="pageheader-text">上传课堂照片，自动签到</p>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                       <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/teacherClass/allClass/" class="breadcrumb-link">我的课程</a></li>
+                            <li class="breadcrumb-item"><a href="/teacherClass/{{ class_id }}/section/" class="breadcrumb-link">{{class_name}}</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">课程签到</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end pageheader -->
+    <!-- ============================================================== -->
+
+      <div class="tab-regular">
             <ul class="nav nav-tabs nav-fill">
                 <li class="nav-item">
                     <a class="nav-link" href="/teacherClass/{{ class_id }}/section/">章节</a>

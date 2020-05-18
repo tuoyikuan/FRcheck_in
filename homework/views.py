@@ -27,6 +27,7 @@ def homework(request, class_id):
         'act_list': templist,
         'class_id': class_id,
         'isteacher': is_teacher_of(request.user.id, class_id),
+        'class_name': get_class_name(class_id)
     })
 
 

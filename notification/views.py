@@ -12,8 +12,10 @@ from django import forms
 import pdb
 @login_required
 def show_noti_list(request, class_id):
-    #if not in_class(request.user.id, class_id):
-        #return redirect('/teacherClass/denied')
+
+    # todo 在teacerClass中加入denied相应的url和view
+    # if not in_class(request.user.id, class_id):
+    #     return redirect('/teacherClass/denied')
 
     temp = Activity.objects.filter(class_id=class_id, type='Notification')
     templist = []
