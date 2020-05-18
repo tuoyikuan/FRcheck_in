@@ -12,7 +12,7 @@ signal = 0
 
 @login_required
 def main(request):
-    return render(request, 'teacher/teacherMain.html')
+    return render(request, 'teacher/teacherMain.html', {'name': request.user.first_name})
 
 
 
