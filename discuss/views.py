@@ -8,15 +8,15 @@ from utils.funcs import *
 
 @login_required()
 def user_name(request, class_id):
-    if not in_class(request.user.id, class_id):
-        return redirect('/teacherClass/denied')
+    #if not in_class(request.user.id, class_id):
+        #return redirect('/teacherClass/denied')
     return render(request, 'discuss/teacherMain.html')
 
 
 @login_required()
 def message_chat(request, class_id):
-    if not in_class(request.user.id, class_id):
-        return redirect('/teacherClass/denied')
+    #if not in_class(request.user.id, class_id):
+        #return redirect('/teacherClass/denied')
     temp = Discuss.objects.filter(class_id=class_id).order_by('-create_time')
     templist=[]
     for e in temp:
@@ -37,8 +37,8 @@ def message_chat(request, class_id):
 
 @login_required()
 def create_msg(request, class_id):
-    if not in_class(request.user.id, class_id):
-        return redirect('/teacherClass/denied')
+    #if not in_class(request.user.id, class_id):
+        #return redirect('/teacherClass/denied')
     if request.method == 'POST':
         title = request.POST.get('msg_title')
         content = request.POST.get('msg_content')
@@ -56,19 +56,19 @@ def create_msg(request, class_id):
 def delete_msg(request, class_id, e_id):
     temp = Discuss.objects.get(id=e_id)
     class_id1 = temp.class_id.id
-    if not in_class(request.user.id, class_id1):
-        return redirect('/teacherClass/denied')
+    #if not in_class(request.user.id, class_id1):
+        #return redirect('/teacherClass/denied')
     userid=request.user.id
-    if temp.author.id != userid and not is_teacher_of(userid, class_id1):
-        return redirect('/teacherClass/denied')
+    #if temp.author.id != userid and not is_teacher_of(userid, class_id1):
+        #return redirect('/teacherClass/denied')
     temp.delete()
     return redirect('/teacherClass/%d/discuss/' % class_id1)
 
 
 @login_required()
 def chatting(request, class_id, e_id):
-    if not in_class(request.user.id, class_id):
-        return redirect('/teacherClass/denied')
+    #if not in_class(request.user.id, class_id):
+        #return redirect('/teacherClass/denied')
     temp = Post.objects.filter(discuss=e_id)
     templist = []
     t = Discuss.objects.get(id=e_id)
@@ -98,8 +98,8 @@ def chatting(request, class_id, e_id):
 
 @login_required()
 def discuss_root(request, class_id):
-    if not in_class(request.user.id, class_id):
-        return redirect('/teacherClass/denied')
+    #if not in_class(request.user.id, class_id):
+        #return redirect('/teacherClass/denied')
     return redirect('/teacherClass/%d/discuss/' % class_id)
 
 

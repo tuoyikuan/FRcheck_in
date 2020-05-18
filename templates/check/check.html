@@ -1,10 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "commonTeacher.html" %}
+{% block kk %}
+    {% load static %}
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
+        <div class="section-block">
+            <h1 class="section-title">课程</h1>
+            <br>
+            <h2>{{ class_name }}</h2>
+        </div>
+        <br>
+        <br>
 
-</body>
-</html>
+        <div class="tab-regular">
+            <ul class="nav nav-tabs nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/section/">章节</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/notification/">通知</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link active" href="/teacherClass/{{ class_id }}/check/">签到</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/homework/">作业</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/group/" role="tab">小组</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/discuss/" role="tab">论坛</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent7">
+                {% ifequal 0 len %}
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                尚未有签到信息
+                            </h5>
+                        </div>
+                    </div>
+                {% endifequal %}
+                {% for check in check_lists %}
+                    {% if isteacher %}
+                    <a href="/teacherClass/{{ class_id }}/check/teacher/{{ check.number }}/">
+                        <br>
+                        <div class="card-header" >
+                            <h2 class="row">
+                                <div>
+                                    第 {{ check.number }} 次签到
+                                </div>
+                                <div class="col-xl-4 col-lg-5 col-md-5 col-sm-3 col-3">
+                                    {{ check.date }}
+                                </div>
+                                <div class="col-xl-3 col-lg-5 col-md-5 col-sm-3 col-3">
+                                </div>
+                                <div class="col-xl-3 col-lg-5 col-md-5 col-sm-3 col-3">
+                                  {{ check.present }}  / {{ check.sum }}
+                                </div>
+                            </h2>
+                        </div>
+                    </a>
+                        {% else %}
+                        <br>
+                        <div class="card-header" >
+                            <h2 class="row">
+                                <div>
+                                    第 {{ check.number }} 次签到
+                                </div>
+                                <div class="col-xl-4 col-lg-5 col-md-5 col-sm-3 col-3">
+                                    {{ check.date }}
+                                </div>
+                                <div class="col-xl-3 col-lg-5 col-md-5 col-sm-3 col-3">
+                                </div>
+                                {% if check.isPresent %}
+                                <div class="col-xl-3 col-lg-5 col-md-5 col-sm-3 col-3">
+                                    已签到
+                                </div>
+                                    {% else %}
+                                    <div class="col-xl-3 col-lg-5 col-md-5 col-sm-3 col-3">
+                                        未签到
+                                    </div>
+                                  {% endif %}
+                            </h2>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                {% if isteacher %}
+                    <div class="row">
+                        <div class="col-9"></div>
+                        <a class="btn btn-primary col-3" href="/teacherClass/{{ class_id }}/check/create">发布签到</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

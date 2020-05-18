@@ -13,12 +13,11 @@ def section(request, class_id):
     sections = Section.objects.filter(class_id__id=class_id).all()
     length = len(sections)
     tmpSection = []
-    numbers = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二']
     for section in sections:
         tmpSection.append({
             'section_name': section.name,
             'number': section.number,
-            'section_number': numbers[section.number]
+            'section_number':section.number
         })
     return render(request, "teacher/teacherClassSection.html", {
         "class_id": class_id,
@@ -33,11 +32,10 @@ def section(request, class_id):
 def show_sec(request, class_id, sec_number):
     class_name = Class.objects.get(id=class_id).class_name
     section = Section.objects.get(class_id__id=class_id, number=sec_number)
-    numbers = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二']
     section_detail = {
         "section_name": section.name,
         "number": section.number,
-        "section_number": numbers[section.number],
+        "section_number": section.number,
         "info": section.info,
     }
     file_lists = section.files.all()

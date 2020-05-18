@@ -1,10 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "commonTeacher.html" %}
+{% block kk %}
+    {% load static %}
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
+        <div class="section-block">
+            <h1 class="section-title">课程</h1>
+            <br>
+            <h2>{{ class_name }}</h2>
+        </div>
+        <br>
+        <br>
 
-</body>
-</html>
+        <div class="tab-regular">
+            <ul class="nav nav-tabs nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/section/">章节</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/notification/">通知</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/teacherClass/{{ class_id }}/check/">签到</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/homework/">作业</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/group/" role="tab">小组</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacherClass/{{ class_id }}/discuss/" role="tab">论坛</a>
+                </li>
+            </ul>
+            <div>
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                            <div class="row">
+                                <div style="margin-left: 2%">
+                                    第 {{ number }} 次签到 {{ date }}
+                                </div>
+                            </div>
+                        </h2>
+                    </div>
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <p class="lead">
+                                签到信息：
+                            </p>
+                            {% if isteacher %}
+                                <div class="row" style="margin-left: 1cm">
+                                    <a class="btn btn-primary col-3" href="/teacherClass/{{ class_id }}/check/teacher/{{ check_id }}/update">添加新的照片</a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

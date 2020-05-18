@@ -9,8 +9,8 @@ from datetime import datetime
 
 @login_required
 def homework(request, class_id):
-    if not in_class(request.user.id, class_id):
-        return redirect('/teacherClass/denied')
+    #if not in_class(request.user.id, class_id):
+        #return redirect('/teacherClass/denied')
     temp = Activity.objects.filter(class_id=class_id, type='Homework')
     templist = []
     for e in temp:
@@ -32,16 +32,16 @@ def homework(request, class_id):
 
 @login_required
 def create_act(request, class_id):
-    if not in_class(request.user.id, class_id):
-        return redirect('/teacherClass/denied')
+    #if not in_class(request.user.id, class_id):
+        #return redirect('/teacherClass/denied')
     return render(request, "homework/new_act.html", {"class_id" : class_id})
 
 
 @login_required
 def show_act_detail(request, class_id, act_id):
     temp = Activity.objects.get(id=act_id)
-    if not in_class(request.user.id, temp.class_id_id):
-        return redirect('/teacherClass/denied')
+    #if not in_class(request.user.id, temp.class_id_id):
+        #return redirect('/teacherClass/denied')
     homework_list = temp.problems.all()
     homeworks = []
     for h in homework_list:
@@ -90,10 +90,10 @@ def show_act_detail(request, class_id, act_id):
 
 @login_required
 def new_act(request, class_id):
-    if not in_class(request.user.id, class_id):
-        return redirect('/teacherClass/denied')
-    if not is_teacher_of(request.user.id, class_id):
-        return redirect('/teacherClass/denied')
+    #if not in_class(request.user.id, class_id):
+        #return redirect('/teacherClass/denied')
+    #if not is_teacher_of(request.user.id, class_id):
+        #return redirect('/teacherClass/denied')
     if request.method == 'POST':
         title = request.POST.get('act-title')
         due_date = request.POST.get('due_date')
@@ -112,10 +112,10 @@ def new_act(request, class_id):
 
 @login_required
 def delete_act(request, class_id, act_id):
-    if not in_class(request.user.id, class_id):
-        return redirect('/teacherClass/denied')
-    if not is_teacher_of(request.user.id, class_id):
-        return redirect('/teacherClass/denied')
+    #if not in_class(request.user.id, class_id):
+        #return redirect('/teacherClass/denied')
+    #if not is_teacher_of(request.user.id, class_id):
+        #return redirect('/teacherClass/denied')
     activite = Activity.objects.get(id=act_id)
     activite.delete()
     return redirect("/teacherClass/%d/homework" % class_id)
@@ -123,31 +123,31 @@ def delete_act(request, class_id, act_id):
 
 @login_required
 def create_blank(request, class_id, act_id):
-    if not in_class(request.user.id, class_id):
-        return redirect('/teacherClass/denied')
+    #if not in_class(request.user.id, class_id):
+        #return redirect('/teacherClass/denied')
     return render(request, "homework/new_blank.html", {"class_id": class_id, "act_id": act_id})
 
 
 @login_required
 def create_choose(request, class_id, act_id):
-    if not in_class(request.user.id, class_id):
-        return redirect('/teacherClass/denied')
+    #if not in_class(request.user.id, class_id):
+        #return redirect('/teacherClass/denied')
     return render(request, "homework/new_choose.html", {"class_id": class_id, "act_id": act_id})
 
 
 @login_required
 def create_text(request, class_id, act_id):
-    if not in_class(request.user.id, class_id):
-        return redirect('/teacherClass/denied')
+    #if not in_class(request.user.id, class_id):
+        #return redirect('/teacherClass/denied')
     return render(request, "homework/new_text.html", {"class_id": class_id, "act_id": act_id})
 
 
 @login_required
 def create_ch(request, class_id, act_id):
-    if not in_class(request.user.id, class_id):
-        return redirect('/teacherClass/denied')
-    if not is_teacher_of(request.user.id, class_id):
-        return redirect('/teacherClass/denied')
+    #if not in_class(request.user.id, class_id):
+        #return redirect('/teacherClass/denied')
+    #if not is_teacher_of(request.user.id, class_id):
+        #return redirect('/teacherClass/denied')
     if request.method == 'POST':
         question = request.POST.get("question")
         choose_a = request.POST.get("choose_a")
@@ -172,10 +172,10 @@ def create_ch(request, class_id, act_id):
 
 @login_required
 def create_bk(request, class_id, act_id):
-    if not in_class(request.user.id, class_id):
-        return redirect('/teacherClass/denied')
-    if not is_teacher_of(request.user.id, class_id):
-        return redirect('/teacherClass/denied')
+    #if not in_class(request.user.id, class_id):
+        #return redirect('/teacherClass/denied')
+    #if not is_teacher_of(request.user.id, class_id):
+        #return redirect('/teacherClass/denied')
     if request.method == 'POST':
         question = request.POST.get("question")
         number = request.POST.get("number")
@@ -194,10 +194,10 @@ def create_bk(request, class_id, act_id):
 
 @login_required
 def create_tx(request, class_id, act_id):
-    if not in_class(request.user.id, class_id):
-        return redirect('/teacherClass/denied')
-    if not is_teacher_of(request.user.id, class_id):
-        return redirect('/teacherClass/denied')
+    #if not in_class(request.user.id, class_id):
+        #return redirect('/teacherClass/denied')
+    #if not is_teacher_of(request.user.id, class_id):
+        #return redirect('/teacherClass/denied')
     if request.method == 'POST':
         question = request.POST.get("question")
         key = request.POST.get("answer")

@@ -12,8 +12,8 @@ from django import forms
 import pdb
 @login_required
 def show_noti_list(request, class_id):
-    if not in_class(request.user.id, class_id):
-        return redirect('/teacherClass/denied')
+    #if not in_class(request.user.id, class_id):
+        #return redirect('/teacherClass/denied')
 
     temp = Activity.objects.filter(class_id=class_id, type='Notification')
     templist = []
@@ -53,23 +53,23 @@ def show_noti(request, class_id, noti_id):
 def delete_post(request, class_id, noti_id):
     temp = Activity.objects.get(id=noti_id)
     class_id1 = temp.class_id
-    if not in_class(request.user.id, class_id1.id):
-        return redirect('/teacherClass/denied')
-    temp.delete()
+    #if not in_class(request.user.id, class_id1.id):
+        #return redirect('/teacherClass/denied')
+    #temp.delete()
     return redirect('/teacherClass/%d/notification/' % class_id1.id)
 
 
 @login_required
 def create_form(request, class_id):
-    if not in_class(request.user.id, class_id):
-        return redirect('/teacherClass/denied')
+    #if not in_class(request.user.id, class_id):
+        #return redirect('/teacherClass/denied')
     return render(request, 'notification/new_notification.html', {'class_id': class_id})
 
 
 @login_required
 def create_post(request, class_id):
-    if not in_class(request.user.id, class_id):
-        return redirect('/teacherClass/denied')
+    #if not in_class(request.user.id, class_id):
+        #return redirect('/teacherClass/denied')
     if request.method == 'POST':
         title = request.POST.get('noti-title')
         content = request.POST.get('noti-content')

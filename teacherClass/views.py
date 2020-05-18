@@ -65,19 +65,25 @@ def addClass(request):
     if request.method == 'POST':
         class_id = request.POST.get('class_id')
         usr = request.user.username
-        t = Student.objects.get(id__username=usr)
+        if is_teacher(usr):
+            return redirect("/teacherClass/allClass")
+        else:
+            t = Student.objects.get(id__username=usr)
         try:
             cl = Class.objects.filter(id=class_id)
         except Exception as e:
             signal = 1
             return redirect("/teacherClass/allClass")
         if len(cl) != 0:
-            class_numbers = StudentMembership.objects.filter(class_id__id=class_id).all()
-            if len(class_numbers) == 0:
+            thisClass = StudentMembership.objects.filter(class_id=cl[0])
+            tmpList = []
+            for class_number in thisClass:
+                tmpList.append(class_number.class_number)
+            if len(tmpList) == 0:
                 class_number = 1
             else:
-                class_number = class_numbers[-1].class_number + 1
-            new_relation = StudentMembership(class_id=cl, student=t, class_number=class_number)
+                class_number = sorted(tmpList)[len(tmpList)-1] + 1
+            new_relation = StudentMembership(class_id=cl[0], student=t, class_number=class_number)
             new_relation.save()
             signal = 2
         else:

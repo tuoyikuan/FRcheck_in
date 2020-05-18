@@ -1,0 +1,4 @@
+老师查看签到信息里面的前端checkDetail.html差一点点显示的东西
+然后改了几个views
+从签到总信息进入的url 改成create
+然后新签到的提交url为create/new
