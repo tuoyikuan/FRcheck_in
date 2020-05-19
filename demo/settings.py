@@ -105,7 +105,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-LOGIN_REDIRECT_URL = '/teacherMain'
+LOGIN_REDIRECT_URL = '/index'
 LOGOUT_REDIRECT_URL = '/accounts/login'
 
 # Internationalization

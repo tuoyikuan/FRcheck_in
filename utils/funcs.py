@@ -1,6 +1,7 @@
 from db.models import *
 from os.path import splitext
 from pickle import dump
+import numpy as np
 from face_recognition import face_encodings, load_image_file
 
 
@@ -63,6 +64,7 @@ def generate_face_encoding(student_id):
     student = Student.objects.get(student_id=student_id)
     path = student.ref_photo_url
     ref_photo = load_image_file(path)
-    return dump(face_encodings(ref_photo), splitext(path)[0] + '.pkl')
+    np.array(face_encodings(ref_photo)).dump(splitext(path)[0] + '.npy')
+    return True
 
 

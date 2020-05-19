@@ -15,14 +15,14 @@ signal = 0
 
 @login_required
 def main(request):
-    return render(request,'student/studentMain.html')
+    return render(request,'student/studentMain.html', {'name': request.user.first_name})
 
 
 @login_required
 def upload_ref_photo(request, student_id):
     student = get_object_or_404(Student, id__id=student_id)
     if request.method == "POST":
-        file = request.FILES.get("file")
+        file = request.FILES.get("picture")
         if not file:
             return HttpResponse('no file for upload!')
         path = os.path.join("static/file/ref_photos", str(student_id))

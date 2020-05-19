@@ -7,6 +7,7 @@ from django.utils import  timezone
 from utils.funcs import *
 from django.contrib import messages
 from pickle import load
+import numpy as np
 from face_recognition import face_locations, face_encodings, face_distance, load_image_file
 
 
@@ -72,7 +73,7 @@ def teacher_check(request, class_id, check_id):
     for student in students:
         name = student.id.first_name
         student_id = student.student_id
-        present = check_string[StudentMembership.objects.get(student=student, class_id=cl).class_number]
+        present = check_string[StudentMembership.objects.get(student=student, class_id=cl).class_rank]
         tmplist.append({
             'name': name,
             'student_id': student_id,
@@ -107,9 +108,16 @@ def update_check(request, class_id, check_id):
     new_check_string = '0' # 调用人脸识别
     cl = Class.objects.get(id=class_id)
     students = cl.students.order_by('studentmembership__class_rank').all()
-    for student in students:
-        ref_encoding = load(os.path.splitext(student.ref_photo_url)[0] + '.pkl')
-        if face_distance(encodings, ref_encoding).any():
+    ref_encodings = np.zeros((len(students), 128))
+    for i, student in enumerate(students):
+        ref_encoding = np.load(os.path.splitext(student.ref_photo_url)[0] + '.npy', allow_pickle=True)
+        ref_encodings[i] = ref_encoding
+    recognized = np.zeros((len(encodings), len(students)))
+    for i, encoding in enumerate(encodings):
+        recognized[i] = face_distance(ref_encodings, encoding) <= 0.3
+    recognized = recognized.any(axis=0)
+    for r in recognized:
+        if r:
             new_check_string += '1'
         else:
             new_check_string += '0'
@@ -130,8 +138,6 @@ def create_new(request, class_id):
     if not file:
         return HttpResponse('no file for upload!')
     path = os.path.join("static/file/tmp", file.name)
-    if not os.path.exists(path):
-        os.makedirs(path)
     destination = open(path, 'wb')
     for chunk in file.chunks():
         destination.write(chunk)
@@ -140,19 +146,27 @@ def create_new(request, class_id):
     # 调用模型识别提取照片中的全部人脸特征码
     image = load_image_file(path)
     face_positions = face_locations(image, 2)
-    encodings = face_encodings(image, face_positions)
+    encodings = np.array(face_encodings(image, face_positions))
 
     new_check_string = '0'  # 调用人脸识别
     cl = Class.objects.get(id=class_id)
     students = cl.students.order_by('studentmembership__class_rank').all()
-    for student in students:
-        ref_encoding = load(os.path.splitext(student.ref_photo_url)[0] + '.pkl')
-        if face_distance(encodings, ref_encoding).any():
+    ref_encodings = np.zeros((len(students), 128))
+    for i, student in enumerate(students):
+        ref_encoding = np.load(os.path.splitext(student.ref_photo_url)[0] + '.npy', allow_pickle=True)
+        ref_encodings[i] = ref_encoding
+    recognized = np.zeros((len(encodings), len(students)))
+    for i, encoding in enumerate(encodings):
+        recognized[i] = face_distance(ref_encodings, encoding) <= 0.3
+    recognized = recognized.any(axis=0)
+    for r in recognized:
+        if r:
             new_check_string += '1'
         else:
             new_check_string += '0'
     check = Check(class_id=cl, batch_number=check_id_new, check_string=new_check_string)
     check.save()
+    os.remove(path)
     return redirect("/teacherClass/%d/check/teacher/%d" % (class_id, check_id_new))
 
 

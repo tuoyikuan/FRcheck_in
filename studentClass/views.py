@@ -42,17 +42,17 @@ def addClass(request):
         usr = request.user.username
         s = Student.objects.get(id__username=usr)
         try:
-            cl = Class.objects.filter(id=class_id)
+            cl = Class.objects.filter(id=class_id).all()
         except Exception as e:
             signal = 1
             return redirect("/studentClass")
         if len(cl) != 0:
-            class_numbers = StudentMembership.objects.filter(class_id__id=class_id).all()
-            if len(class_numbers) == 0:
-                class_number = 1
+            studentsInThisClass = StudentMembership.objects.filter(class_id=cl[0]).all()
+            if len(studentsInThisClass) == 0:
+                class_rank = 1
             else:
-                class_number = class_numbers[-1].class_number + 1
-            new_relation = StudentMembership(class_id=cl, student=s, class_number=class_number)
+                class_rank = studentsInThisClass.latest().class_rank + 1
+            new_relation = StudentMembership(class_id=cl[0], student=s, class_rank=class_rank)
             new_relation.save()
             signal = 2
         else:
