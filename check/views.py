@@ -47,8 +47,8 @@ def check(request, class_id):
             batch_number = check.batch_number
             date = check.create_time
             s = Student.objects.get(id=request.user)
-            class_number = StudentMembership.objects.get(class_id__id=class_id, student=s).class_number
-            present = check.check_string[class_number]
+            class_rank = StudentMembership.objects.get(class_id__id=class_id, student=s).class_rank
+            present = check.check_string[class_rank]
             tmplist.append({
                 'number': batch_number,
                 'date': date,
@@ -114,7 +114,7 @@ def update_check(request, class_id, check_id):
         ref_encodings[i] = ref_encoding
     recognized = np.zeros((len(encodings), len(students)))
     for i, encoding in enumerate(encodings):
-        recognized[i] = face_distance(ref_encodings, encoding) <= 0.3
+        recognized[i] = face_distance(ref_encodings, encoding) <= 0.5
     recognized = recognized.any(axis=0)
     for r in recognized:
         if r:
@@ -157,7 +157,7 @@ def create_new(request, class_id):
         ref_encodings[i] = ref_encoding
     recognized = np.zeros((len(encodings), len(students)))
     for i, encoding in enumerate(encodings):
-        recognized[i] = face_distance(ref_encodings, encoding) <= 0.3
+        recognized[i] = face_distance(ref_encodings, encoding) <= 0.5
     recognized = recognized.any(axis=0)
     for r in recognized:
         if r:

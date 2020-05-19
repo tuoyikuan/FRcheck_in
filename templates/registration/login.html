@@ -37,7 +37,7 @@
         <div class="card ">
             <div class="card-header text-center"><a href="{% static 'index.html' %}"><img class="logo-img" src="{% static 'assets/images/logo.png' %}" alt="logo"></a><span class="splash-description">请输入您的用户信息.</span></div>
             <div class="card-body">
-                <form method="post">
+                <form action="/accounts/login/" method="post">
                     {% csrf_token %}
                     {% if form.errors|length %}
                         <div class="form-group">
