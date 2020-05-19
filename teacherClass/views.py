@@ -75,15 +75,12 @@ def addClass(request):
             signal = 1
             return redirect("/teacherClass/allClass")
         if len(cl) != 0:
-            thisClass = StudentMembership.objects.filter(class_id=cl[0])
-            tmpList = []
-            for class_number in thisClass:
-                tmpList.append(class_number.class_number)
-            if len(tmpList) == 0:
-                class_number = 1
+            studentsInThisClass = StudentMembership.objects.filter(class_id=cl[0]).all()
+            if len(studentsInThisClass) == 0:
+                class_rank = 1
             else:
-                class_number = sorted(tmpList)[len(tmpList)-1] + 1
-            new_relation = StudentMembership(class_id=cl[0], student=t, class_number=class_number)
+                class_rank = studentsInThisClass.latest('class_rank').class_rank + 1
+            new_relation = StudentMembership(class_id=cl[0], student=t, class_rank=class_rank)
             new_relation.save()
             signal = 2
         else:
