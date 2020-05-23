@@ -75,17 +75,21 @@ def teacher_check(request, class_id, check_id):
     for student in students:
         name = student.id.first_name
         student_id = student.student_id
-        present = check_string[StudentMembership.objects.get(student=student, class_id=cl).class_rank] == '1'
+        class_rank = StudentMembership.objects.get(student=student, class_id=cl).class_rank
+        present = check_string[class_rank] == '1'
         if not present:
             absent_students.append({
                 'name': name,
                 'student_id': student_id,
+                'class_rank': class_rank
             })
     return render(request, "check/checkDetail.html", {
         "is_teacher": is_teacher_of(request.user.id, class_id),
         "class_id": class_id,
+        "class_name": Class.objects.get(id=class_id).class_name,
         "number": check_id,
         "check_id": check_id,
+        "sum": len(check_string) - 1,
         "present_n": present_n,
         "absent_students": absent_students,
         "create_time": check.create_time
@@ -95,42 +99,19 @@ def teacher_check(request, class_id, check_id):
 def update_check(request, class_id, check_id):
     """需要根据已有的表单信息以及新的图片，把位串与一下"""
     # 读取上传的照片 临时存储在static/file/tmp目录下
-    file = request.FILES.get("picture")
-    if not file:
-        return HttpResponse('no file for upload!')
-    path = os.path.join("static/file/tmp", file.name)
-    if not os.path.exists(path):
-        os.makedirs(path)
-    destination = open(path, 'wb')
-    for chunk in file.chunks():
-        destination.write(chunk)
-    destination.close()
-
-    # 调用模型识别提取照片中的全部人脸特征码
-    image = load_image_file(path)
-    face_positions = face_locations(image, 2)
-    encodings = face_encodings(image, face_positions)
-
-    new_check_string = '0' # 调用人脸识别
+    rechecked_ids = set(request.GET.getlist("rechecked_id_list"))
     cl = Class.objects.get(id=class_id)
-    students = cl.students.order_by('studentmembership__class_rank').all()
-    ref_encodings = np.zeros((len(students), 128))
-    for i, student in enumerate(students):
-        ref_encoding = np.load(os.path.splitext(student.ref_photo_url)[0] + '.npy', allow_pickle=True)
-        ref_encodings[i] = ref_encoding
-    recognized = np.zeros((len(encodings), len(students)))
-    for i, encoding in enumerate(encodings):
-        recognized[i] = face_distance(ref_encodings, encoding) <= 0.5
-    recognized = recognized.any(axis=0)
-    for r in recognized:
-        if r:
+    new_check_string = '0'
+    check = Check.objects.get(class_id=cl, batch_number=check_id)
+    check_string = check.check_string
+    for i in range(1, len(check_string)):
+        if str(i) in rechecked_ids:
             new_check_string += '1'
         else:
-            new_check_string += '0'
-    check = Check.objects.get(class_id=cl, batch_number=check_id)
+            new_check_string += check_string[i]
     check.check_string = new_check_string
     check.save()
-    return redirect("/teacherClass/%d/check/teacher/%d" % (class_id, check_id))
+    return redirect("/teacherClass/%d/check/" % (class_id, check_id))
 
 @login_required
 def create_new(request, class_id):

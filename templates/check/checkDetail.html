@@ -1,14 +1,27 @@
 {% extends "commonTeacher.html" %}
 {% block kk %}
     {% load static %}
-    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
-        <div class="section-block">
-            <h1 class="section-title">课程</h1>
-            <br>
-            <h2>{{ class_name }}</h2>
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">课堂签到 </h2>
+                <p class="pageheader-text">上传课堂照片，自动签到</p>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                       <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/teacherClass/allClass/" class="breadcrumb-link">我的课程</a></li>
+                            <li class="breadcrumb-item"><a href="/teacherClass/{{ class_id }}/section/" class="breadcrumb-link">{{class_name}}</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">第{{ check_id }}次签到详情</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
         </div>
-        <br>
-        <br>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end pageheader -->
+    <!-- ============================================================== -->
 
         <div class="tab-regular">
             <ul class="nav nav-tabs nav-fill">
@@ -38,9 +51,20 @@
                 <div class="card">
                     <div class="card-header" id="headingOne">
                         <h2 class="mb-0">
-                            <div class="row">
-                                <div style="margin-left: 2%">
-                                    第 {{ number }} 次签到 {{ date }}
+                            <div>
+                                <br>
+                                <div class="card-header" >
+                                    <h2 class="row">
+                                        <div class="col-md-3 ">
+                                            第 {{ number }} 次签到
+                                        </div>
+                                        <div class="text-center col-md-6">
+                                            {{ create_time }}
+                                        </div>
+                                        <div class="text-center col-md-3" >
+                                          {{ present_n }}  / {{ sum }}
+                                        </div>
+                                    </h2>
                                 </div>
                             </div>
                         </h2>
@@ -48,16 +72,36 @@
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body">
                             <p class="lead">
-                                签到信息：
+                                未成功签到学生：
                             </p>
-                            {% if is_teacher %}
-                                <div class="row" style="margin-left: 1cm">
-                                    <a class="btn btn-primary col-3" href="/teacherClass/{{ class_id }}/check/teacher/{{ check_id }}/update">添加新的照片</a>
-                                </div>
-                            {% endif %}
+                        <form action="/teacherClass/{{ class_id }}/check/teacher/{{ check_id }}/update" id="update_form">
+                            {%  csrf_token %}
+                            <table class="bordered col-lg-12">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">学生名称</th>
+                                        <th class="text-center">学号</th>
+                                        <th class="text-center">补签</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                            {% for absent_student in absent_students %}
+                                <tr>
+                                    <td class="text-center">{{ absent_student.name}}</td>
+                                    <td class="text-center">{{ absent_student.student_id }}</td>
+                                    <td class="text-center"><input type="checkbox" value={{absent_student.class_rank}} name="rechecked_id_list"/></td>
+                                </tr>
+                            {% endfor %}
+                                </tbody>
+                            </table>
+                        </form>
+
+                        <div class="text-center" >
+                            <button type="submit" form="update_form" class="btn btn-secondary pull-left m-3">提交补签</button>
+                            <a class="btn btn-primary col-1 m-3" href="/teacherClass/{{ class_id }}/check/">返回</a>
                         </div>
                     </div>
-                </div>
+                        </div>
                 <br>
                 <br>
             </div>
