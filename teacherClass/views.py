@@ -51,7 +51,7 @@ def allClass(request):
     signal1 = 0
     return render(request, "teacher/teacherClass.html", {
         'class_list': tmplist,
-        'username': usr,
+        'name': request.user.first_name,
         'len': length,
         'signal': temp,
         'signal1': temp1,

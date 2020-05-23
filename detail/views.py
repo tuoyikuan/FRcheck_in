@@ -8,11 +8,11 @@ from utils.funcs import *
 def detail(request, class_id):
     cl = Class.objects.get(id=class_id)
     class_name = cl.class_name
-    students = StudentMembership.objects.filter(class_id=cl).all()
+    students = cl.students.all()
     tempList = []
     for student in students:
         tempList.append({
-            "name": student.id.usrname,
+            "name": student.id.first_name,
             "id": student.student_id,
             "url": student.ref_photo_url
         })

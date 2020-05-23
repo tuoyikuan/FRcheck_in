@@ -73,7 +73,7 @@ class Section(models.Model):
 class Check(models.Model):
     class_id = models.ForeignKey(Class, on_delete=models.CASCADE)
     batch_number = models.IntegerField()
-    create_time = models.DateField(auto_now=True)
+    create_time = models.DateTimeField(auto_now=True)
     check_string = models.CharField(max_length=250)
 
 

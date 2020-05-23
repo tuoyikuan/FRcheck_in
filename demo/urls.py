@@ -19,6 +19,7 @@ from .views import home_page
 from . import settings
 
 urlpatterns = [
+    path('', home_page),
     path('index/', home_page),
     path('admin/', admin.site.urls),
     # path('check/', include("check.urls")),

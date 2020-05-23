@@ -68,21 +68,27 @@ def teacher_check(request, class_id, check_id):
     # 根据class_id和check_id返回对应某次具体签到活动中每位同学的签到情况
     cl = Class.objects.get(id=class_id)
     students = cl.students.order_by('studentmembership__class_rank').all()
-    check_string = Check.objects.get(class_id=cl, batch_number=check_id).check_string
-    tmplist = []
+    check = Check.objects.get(class_id=cl, batch_number=check_id)
+    check_string = check.check_string
+    present_n = check_string.count('1')
+    absent_students = []
     for student in students:
         name = student.id.first_name
         student_id = student.student_id
-        present = check_string[StudentMembership.objects.get(student=student, class_id=cl).class_rank]
-        tmplist.append({
-            'name': name,
-            'student_id': student_id,
-            'present': present
-        })
+        present = check_string[StudentMembership.objects.get(student=student, class_id=cl).class_rank] == '1'
+        if not present:
+            absent_students.append({
+                'name': name,
+                'student_id': student_id,
+            })
     return render(request, "check/checkDetail.html", {
+        "is_teacher": is_teacher_of(request.user.id, class_id),
         "class_id": class_id,
         "number": check_id,
         "check_id": check_id,
+        "present_n": present_n,
+        "absent_students": absent_students,
+        "create_time": check.create_time
     })
 
 @login_required
