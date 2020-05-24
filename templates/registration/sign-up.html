@@ -6,7 +6,7 @@
     {% load static %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Page - 用户注册</title>
+    <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}">
     <link href="{% static 'assets/vendor/fonts/circular-std/style.css' %}" rel="stylesheet">
@@ -65,10 +65,13 @@
                     <input class="form-control form-control-lg" value="{{ name }}" required="" name="name" placeholder="Name">
                 </div>
                 <div class="form-group">
-                    <input class="form-control form-control-lg" value="{{ number }}" required="" name="number" placeholder="Student/Teacher ID">
+                    <input class="form-control form-control-lg" id="userID" value="{{ number }}" required="" name="number" placeholder="Student/Teacher ID">
                 </div>
                 <div class="form-group">
                     <input class="form-control form-control-lg" value="{{ dept }}" required="" name="dept" placeholder="Department">
+                </div>
+                <div class="form-group">
+                    <input type="file" id="uploadPhoto" accept="image/*" class="form-control form-control-lg" value="{{ photo }}" required="" name="photo" placeholder="photo">
                 </div>
                 <div class="form-group pt-2">
                     <button class="btn btn-block btn-primary" type="submit">Register My Account</button>
@@ -83,3 +86,27 @@
 
 
 </html>
+
+<script>
+    var inputTest = document.getElementById("userID")
+    var value = inputTest.value
+
+    function getEle(id) {
+        return document.getElementById((id))
+    }
+
+    inputTest.onchange=function () {
+        value=inputTest.value
+        if(value>=10000)
+        {
+            getEle("uploadPhoto").style.display="block"
+        }
+        else {
+            getEle("uploadPhoto").style.display="none"
+        }
+        console.log('changed')
+        console.log(value)
+    }
+
+
+</script>
