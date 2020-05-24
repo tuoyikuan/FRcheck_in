@@ -35,7 +35,7 @@ def homework(request, class_id):
 def create_act(request, class_id):
     #if not in_class(request.user.id, class_id):
         #return redirect('/teacherClass/denied')
-    return render(request, "homework/new_act.html", {"class_id" : class_id})
+    return render(request, "homework/new_act.html", {'class_name': Class.objects.get(id=class_id).class_name, "class_id" : class_id})
 
 
 @login_required

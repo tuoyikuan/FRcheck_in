@@ -10,10 +10,10 @@
                 <p class="pageheader-text">为课程创建新的通知事项</p>
                 <div class="page-breadcrumb">
                     <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Tables</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">General Tables</li>
+                       <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/teacherClass/allClass/" class="breadcrumb-link">我的课程</a></li>
+                            <li class="breadcrumb-item"><a href="/teacherClass/{{ class_id }}/section/" class="breadcrumb-link">{{class_name}}</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">发布通知</li>
                         </ol>
                     </nav>
                 </div>
@@ -38,14 +38,9 @@
                             <label for="content">通知内容</label>
                             <textarea class="form-control" id="content" rows="3" name="noti-content"></textarea>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-6"> </div>
-                            <div class="col-sm-6">
-                                <p class="text-right">
-                                    <button type="submit" class="btn btn-space btn-primary">Submit</button>
-                                    <a class="btn btn-space btn-secondary" href="/teacherClass/{{ class_id }}/notification/">Cancel</a>
-                                </p>
-                            </div>
+                        <div class="text-center" >
+                            <button type="submit" class="btn btn-secondary pull-left m-3">发布通知</button>
+                            <a class="btn btn-primary col-1 m-3" href="/teacherClass/{{ class_id }}/notification/">取消</a>
                         </div>
                     </form>
                 </div>

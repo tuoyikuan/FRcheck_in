@@ -84,7 +84,7 @@ def create_new_sec(request, class_id):
 
 @login_required
 def create(request, class_id):
-    return render(request, "teacher/newSection.html", {"class_id": class_id})
+    return render(request, "teacher/newSection.html", {"class_id": class_id,"class_name": Class.objects.get(id=class_id).class_name})
 
 @login_required
 def uploadFile(request, class_id, sec_number):

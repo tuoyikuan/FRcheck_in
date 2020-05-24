@@ -1,15 +1,23 @@
 {% extends "commonTeacher.html" %}
 {% block kk %}
     {% load static %}
-    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
-        <div class="section-block">
-            <h1 class="section-title">课程</h1>
-            <br>
-            <h2>{{ class_name }}</h2>
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+                <h2 class="pageheader-title">学生信息</h2>
+                <p class="pageheader-text">加入课程的全体学生列表</p>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                       <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/teacherClass/allClass/" class="breadcrumb-link">我的课程</a></li>
+                            <li class="breadcrumb-item"><a href="/teacherClass/{{ class_id }}/section/" class="breadcrumb-link">{{class_name}}</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">学生信息</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
         </div>
-        <br>
-        <br>
-
+    </div>
         <div class="tab-regular">
             <ul class="nav nav-tabs nav-fill">
                 <li class="nav-item">
@@ -44,23 +52,27 @@
                         </div>
                     </div>
                 {% endifequal %}
-                {% for student in student_lists %}
-                        <br>
-                        <div class="card-header" >
-                            <h2 class="row">
-                                <div>
-                                    {{ student.id }}
-                                </div>
-                                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-3 col-3">
-                                    {{ student.name }}
-                                </div>
-                                <img  class="img-responsive" src="{{ STATIC_URL }}photo/{{ student.url }}.jpg">
-                            </h2>
-                        </div>
-                    </a>
-                {% endfor %}
+                            <table class="bordered col-lg-12">
+                                <br>
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">学生姓名</th>
+                                        <th class="text-center">学号</th>
+                                        <th class="text-center">学生照片</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                            {% for student in student_lists %}
+                                <tr>
+                                    <td class="text-center">{{ student.name }}</td>
+                                    <td class="text-center">{{ student.id }}</td>
+                                    <td class="text-center"><img  class="img-responsive collg-4" height="150" width="100" src="{{ student.url }}" /></td>
+                                </tr>
+                            {% endfor %}
+                                </tbody>
+                            </table>
             </div>
         </div>
-    </div>
+
 
 {% endblock %}

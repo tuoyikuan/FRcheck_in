@@ -1,15 +1,13 @@
 {% extends "commonTeacher.html" %}
 {% block kk %}
     {% load static %}
-    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
-        <div class="section-block">
-            <h1 class="section-title">课程</h1>
-            <br>
-            <h2>{{ class_name }}</h2>
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
+            <div class="section-block">
+                <h1 class="section-title">课程</h1>
+                <br>
+                <h2>{{ class_name }}</h2>
+            </div>
         </div>
-        <br>
-        <br>
-
         <div class="tab-regular">
             <ul class="nav nav-tabs nav-fill">
                 <li class="nav-item">
@@ -68,6 +66,6 @@
                 {% endif %}
             </div>
         </div>
-    </div>
+
 
 {% endblock %}

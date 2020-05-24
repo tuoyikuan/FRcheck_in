@@ -1,14 +1,13 @@
 {% extends "commonTeacher.html" %}
 {% block kk %}
     {% load static %}
-    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
-        <div class="section-block">
-            <h1 class="section-title">课程</h1>
-            <br>
-            <h2>{{ class_name }}</h2>
+   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
+            <div class="section-block">
+                <h1 class="section-title">课程</h1>
+                <br>
+                <h2>{{ class_name }}</h2>
+            </div>
         </div>
-        <br>
-        <br>
 
         <div class="tab-regular">
             <ul class="nav nav-tabs nav-fill">
@@ -58,10 +57,9 @@
                                                 <textarea required="" class="form-control" name="info"></textarea>
                                             </div>
                                         </div>
-                                        <div class="form-group row text-right">
-                                            <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
-                                                <button type="submit" class="btn btn-space btn-primary">提交</button>
-                                            </div>
+                                        <div class="text-center" >
+                                            <button type="submit" class="btn btn-secondary pull-left m-3">发布章节</button>
+                                                <a class="btn btn-primary col-1 m-3" href="/teacherClass/{{ class_id }}/section">返回</a>
                                         </div>
                                         {% if messages %}
                                             <script>
@@ -71,16 +69,10 @@
                                             </script>
                                         {% endif %}
                                     </form>
-                                    <div style="margin-left: 68.2%">
-                                        <a href="/teacherClass/{{ class_id }}/section">
-                                            <div class="btn btn-space btn-secondary">取消</div>
-                                        </a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </form>
             </div>
         </div>
-    </div>
 {% endblock %}

@@ -25,13 +25,14 @@ def show_noti_list(request, class_id):
             'title': e.title,
             'content': e.content,
             'create_date': e.create_date,
-            'author': e.author.username,
+            'author': e.author.first_name,
             'class_id': class_id,
         })
 
     return render(request, 'notification/notification.html', {
         'note_list': templist,
         'class_id': class_id,
+        'class_name': Class.objects.get(id=class_id).class_name,
         'isteacher': is_teacher_of(request.user.id, class_id),
     })
 
@@ -46,6 +47,7 @@ def show_noti(request, class_id, noti_id):
         'title': temp.title,
         'content': temp.content,
         'noti': noti_id,
+        'class_name': Class.objects.get(id=class_id).class_name,
         'isAuthor': temp.author.id == request.user.id,
         'class_id': class_id,
     })
@@ -65,7 +67,7 @@ def delete_post(request, class_id, noti_id):
 def create_form(request, class_id):
     #if not in_class(request.user.id, class_id):
         #return redirect('/teacherClass/denied')
-    return render(request, 'notification/new_notification.html', {'class_id': class_id})
+    return render(request, 'notification/new_notification.html', {'class_id': class_id, 'class_name': Class.objects.get(id=class_id).class_name})
 
 
 @login_required
